@@ -9,7 +9,7 @@ body {
   background-color: #000000;
 }
 
-body > .container {
+body>.container {
   height: 450px;
   width: 900px;
   margin: -225px 0 0 -450px;
@@ -51,7 +51,7 @@ a.tab:focus {
 }
 
 .tab.active {
-  border-color: #467bb7;
+  border-color: #5584AC;
   border-bottom-color: #fff;
   color: #333;
   background-color: #fff;
@@ -69,7 +69,7 @@ a.tab:focus {
   margin-bottom: 10px;
   height: 410px;
   width: 100%;
-  border: 4px solid #467bb7;
+  border: 4px solid #5584AC;
   border-radius: 10px;
   overflow: hidden;
   box-sizing: border-box;
@@ -222,13 +222,22 @@ a.tab:focus {
 .list-group-item.active,
 .list-group-item.active:focus,
 .list-group-item.active:hover {
-  background-color: #72beb2;
-  border-color: #72beb2;
+  color: black;
+  background-color: #FCEF6F !important;
+  border-color: #FCEF6F !important;
 }
 
-a.list-group-item, a.list-group-item, button.list-group-item, button.list-group-item {
+a.list-group-item,
+a.list-group-item,
+button.list-group-item,
+button.list-group-item {
   background-color: #fff;
 }
+
+.needLevel{
+  background-color: #89E697 !important;
+}
+
 
 .btn-primary {
   background-color: #467bb7;
@@ -244,7 +253,7 @@ a.list-group-item, a.list-group-item, button.list-group-item, button.list-group-
     background: none;
   }
 
-  body > .container {
+  body>.container {
     position: relative;
     top: 0;
     left: 0;
@@ -334,4 +343,8 @@ a.list-group-item, a.list-group-item, button.list-group-item, button.list-group-
 
 p {
   color: black !important;
+}
+
+#changeSave{
+  display: none;
 }

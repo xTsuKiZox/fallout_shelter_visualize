@@ -63,7 +63,7 @@ function handleFileSelect(evt) {
     }
     if (f) {
       var reader = new FileReader;
-      if (evt.target.id == "sav_file") {
+      if (evt.target.id == "sav_file" || evt.target.id == "sav_file5") {
         reader.onload = function (evt2) {
           try {
             decrypt(evt2, fileName, reader.result)
@@ -121,6 +121,17 @@ document.getElementById("sav_file").addEventListener("change", function (e) {
   handleFileSelect(e);
 }, false);
 
+document.getElementById("sav_file5").addEventListener("change", function (e) {
+  $('#changeSave').css('display', 'block');
+  $('.box').removeClass('hover').addClass('ready');
+  $('.instructions').hide();
+  handleFileSelect(e);
+}, false);
+
+window.addEventListener("unload", function () {
+  $('#changeSave').css('display', 'none');
+});
+
 document.ondragover = document.ondrop = function (e) {
   e.preventDefault();
   return false;
@@ -155,22 +166,27 @@ $('body .container .box')
 
 
 // Modifications
+let jsonDecode
+let isCharge = false
 function edit(fileName, save) {
   isLoaded = true;
+  jsonDecode = save
+  isCharge = true
   var scope = angular.element($('body').get(0)).scope();
   scope.$apply(function () {
     scope.save = save;
     scope.fileName = fileName;
   });
+  scope.forS(jsonDecode);
 }
 
 var app = angular.module('shelter', []);
 
 app.controller('dwellerController', function ($scope) {
   $scope.section = 'vault';
-
   $scope.fileName = '';
   $scope.dweller = {};
+  $scope.rooms = {};
   $scope.statsName = ['Unknown', 'S.', 'P.', 'E.', 'C.', 'I.', 'A.', 'L.'];
   $scope.other = {};
   $scope.wastelandTeams = [];
@@ -389,6 +405,10 @@ app.controller('dwellerController', function ($scope) {
 
   $scope.closeDweller = function (dweller) {
     $scope.dweller = {};
+  };
+
+  $scope.closeRooms = function (rooms) {
+    $scope.rooms = {};
   };
 
   $scope.editTeam = function (team) {
@@ -760,7 +780,7 @@ app.controller('dwellerController', function ($scope) {
       "SawedOffShotgun_Enhanced",
       "SawedOffShotgun_Rusty",
       "Shotgun"];
-      alert("Unlocked Recipes!");
+    alert("Unlocked Recipes!");
   }
 
   function extractCount() {
@@ -1257,7 +1277,63 @@ app.controller('dwellerController', function ($scope) {
       $scope.other.death = 'Not Death';
     }
   });
+
+
+  $scope.gym = {
+    1: {
+      1: ''
+    },
+    2: {},
+    3: {}
+  }
+
+
+  // $scope.forS = function (stats) {
+  //   if (isCharge && jsonDecode !== undefined) {
+  //     if (stats != undefined) {
+  //       console.log(stats)
+  //       // let statsGym = stats[2]
+  //       // console.log(statsGym)
+  //       for (const room of jsonDecode.vault.rooms) {
+  //         if (room.type === "Gym") {
+  //           // console.log(room);
+  //           // let gymlvl = room.level
+  //           // console.log(gymlvl);
+  //         }
+  //       }
+  //     }
+  //   }
+  // }
+
+
+  $scope.forS = function (stats) {
+    if (isCharge && jsonDecode !== undefined) {
+      console.log(stats)
+      if (stats !== undefined) {
+        console.log(stats);
+        // Vous pouvez traiter le tableau de statistiques ici
+      }
+    }
+  };
+
+    // < !-- < div class="col-sm-4" >
+    //           <label>Time S</label>
+    //           <input type="text" class="form-control" name="timeS" ng-init="forS(dweller.stats.stats)" readonly>
+    //         </div> -->
+
+
+
+  //   < !-- < div class="col-sm-4" >
+  //             <label>Task finish ?</label>
+  //             <input class="form-control" type="text" name="taskFinish" ng-model="" readonly> 
+  //           </div>
+  // -->
+
+
 });
+
+
+
 
 function preset(preset, saveFileName) {
 

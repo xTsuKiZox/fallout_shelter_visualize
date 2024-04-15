@@ -124,8 +124,9 @@
 
     <div class="row box" ng-show="section == 'dwellers'">
       <div class="dwellers list-group col-sm-4">
-        <a ng-repeat="d in save.dwellers.dwellers" ng-click="editDweller(d);" ng-class="{ 'active': dweller == d }"
-          class="list-group-item">{{ d.name }} {{ d.lastName }}</a>
+        <a ng-repeat="d in save.dwellers.dwellers" ng-click="editDweller(d);"
+          ng-class="{ 'active': dweller == d, 'needLevel': d.experience.needLvUp }" class="list-group-item">{{ d.name }}
+          {{ d.lastName }}</a>
       </div>
       <div class="dweller_info col-sm-8" ng-hide="!dweller.name">
         <a href="#" class="back_button glyphicon glyphicon-chevron-left" ng-click="closeDweller()">Back</a>
@@ -183,7 +184,8 @@
 
             <div class="col-sm-4">
               <label>Need level up ?</label>
-              <input type="text" readonly class="form-control" name="levelup" ng-model="dweller.experience.needLvUp">
+              <input type="text" readonly class="form-control" name="levelup" ng-model="dweller.experience.needLvUp"
+                ng-class="{ 'needLevel': dweller.experience.needLvUp }">
             </div>
           </div>
 
@@ -198,13 +200,14 @@
               <label>Hair Color</label>
               <input class="form-control" type="text" name="hairColor" ng-model="hairColor" readonly> <!-- jscolor -->
             </div>
+              
           </div>
 
           <div class="form-group row">
             <div class="col-sm-4" ng-if="dweller.gender==1">
               <label>Pregnant</label>
-              <select class="form-control" name="pregnant" ng-model="dweller.pregnant"
-                ng-options="o.v as o.n for o in [{ n: 'Not Pregnant', v: false }, { n: 'Pregnant', v: true }]"></select>
+              <input type="text" class="form-control" name="pregnant" ng-model="dweller.pregnant" readonly
+                ng-value="dweller.pregnant ? 'Pregnant' : 'Not Pregnant'">
             </div>
 
             <div class="col-sm-4" ng-if="dweller.pregnant">
@@ -233,6 +236,13 @@
               <select class="form-control" name="equippedPet" ng-model="dweller.equippedPet.id"
                 ng-options="label as value for (label,value) in { sphynx_l: 'sphynx_l' }"></select>
             </div>-->
+
+            <div class="form-group row">
+              <div class="col-sm-4">
+                <label>Rarity</label>
+                <input type="text" class="form-control" name="rarity" ng-model="dweller.rarity" readonly>
+              </div>
+            </div>
           </div>
 
           <hr />
@@ -243,6 +253,7 @@
               <div class="bar" ng-class="'value' + stat.value"></div>
               <input type="text" readonly class="form-control" ng-model="stat.value" min="0" max="10">
             </div>
+
           </div>
 
           <hr />
@@ -258,22 +269,30 @@
 
         <label title="Savefile names can only be 'Vault1.sav', 'Vault2.sav' or 'Vault3.sav'">Savefile Name: </label>
         <input type="text" name="presetSaveName" id="presetSaveName" placeholder="Vault1.sav" value="Vault2.sav"
-          readonly><br>
+          readonly>
+        <br>
+
+        <label>Changer de sauvegarde :</label>
+        <br>
+        <input type="file" id="sav_file5" name="sav_file5">
+        <p id="changeSave" ng-show="section === 'extras' && save.dwellers">Sauvegarde charger</p>
+
 
         <hr />
         <br>
-        <center><b><a href="SaveDecrypt.html">Fallout Shelter Save Decryptor</a></b></center>
+        <center><b><a href="SaveDecrypt.html" target="_blank">Fallout Shelter Save Decryptor</a></b></center>
         <br>
-        <center><b><a href="https://github.com/xTsuKiZox/fallout_shelter_visualize">View the Source Code</a></b>
+        <center><b><a href="https://github.com/xTsuKiZox/fallout_shelter_visualize" target="_blank">View the Source
+              Code</a></b>
         </center>
         <br>
-        <center><label>Updated by <a href="https://github.com/xTsuKiZox/">TsuKiZo</a></label></center>
+        <center><label>Updated by <a href="https://github.com/xTsuKiZox/" target="_blank">TsuKiZo</a></label></center>
         <br>
-        <center><label>Basic project by <a href="https://github.com/rakion99/">rakion99</a> &amp; <a
-              href="https://github.com/TheCreatorJames/">TheCreatorJames</a></label></center>
+        <center><label>Basic project by <a href="https://github.com/rakion99/" target="_blank">rakion99</a> &amp; <a
+              href="https://github.com/TheCreatorJames/" target="_blank">TheCreatorJames</a></label></center>
         <br>
-        <center><label>Project Originally by <a
-              href="https://github.com/MobileSam/shelter-editor">MobileSam</a>.</label>
+        <center><label>Project Originally by <a href="https://github.com/MobileSam/shelter-editor"
+              target="_blank">MobileSam</a>.</label>
         </center>
 
       </div>
