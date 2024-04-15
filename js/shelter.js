@@ -1220,6 +1220,35 @@ app.controller('dwellerController', function ($scope) {
     WorkDress: 'Rural Schoolmarm',
     WrestlerSpecial: 'Wrestler Outfit'
   };
+
+  $scope.$watch('dweller.gender', function (newValue, oldValue) {
+    if (newValue === 1) {
+      $scope.dweller.gender = 'Female';
+    } else if (newValue === 2) {
+      $scope.dweller.gender = 'Male';
+    }
+  });
+
+  $scope.$watch('save.vault.VaultMode', function (newValue, oldValue) {
+    if (newValue === "Normal") {
+      $scope.save.vault.VaultMode = 'Normal';
+    } else if (newValue === "Survival") {
+      $scope.save.vault.VaultMode = 'Survival';
+    }
+  });
+
+  $scope.$watch('save.vault.VaultTheme', function (newValue, oldValue) {
+    if (newValue === 0) {
+      $scope.save.vault.VaultTheme = 'Normal';
+    } else if (newValue === 1) {
+      $scope.save.vault.VaultTheme = 'Xmas';
+    } else if (newValue === 2) {
+      $scope.save.vault.VaultTheme = 'Halloween';
+    } else if (newValue === 3) {
+      $scope.save.vault.VaultTheme = 'ThanksGiving';
+    }
+  });
+
 });
 
 function preset(preset, saveFileName) {
