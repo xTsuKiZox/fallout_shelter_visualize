@@ -1,2 +1,6 @@
-# fallout_shelter_visualize
-View your Shelter from the game Fallout Shelter. Open Source code retrieved from this repository: https://github.com/rakion99/shelter-editor/tree/gh-pages
+# shelter-editor
+Fallout Shelter - Save Editor
+
+Using the decryptor from http://fossd.bitballoon.com/
+
+Live demo (Rakion99 Branch): https://rakion99.github.io/shelter-editor/

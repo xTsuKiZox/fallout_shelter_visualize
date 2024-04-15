@@ -4,7 +4,7 @@ body {
 }
 
 body {
-  background-image: url(../imgs/background.jpg);
+  background-image: url(../bg.png);
   background-size: cover;
   background-color: #000000;
 }
@@ -29,7 +29,7 @@ body > .container {
   line-height: 30px;
   display: inline-block;
   border: 4px solid transparent;
-  color: black;
+  color: #ddd;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   padding: 0 20px;
@@ -37,7 +37,7 @@ body > .container {
 
 .tab:first-child {
   border-color: transparent;
-  color: black;
+  color: #f1f1f1;
   padding-left: 0;
   padding-right: 10px;
   font-weight: bold;
@@ -206,7 +206,7 @@ a.tab:focus {
 
 .instructions input {
   display: inline-block;
-  /* max-width: 95px; */
+  max-width: 95px;
 }
 
 .boy {
@@ -329,9 +329,4 @@ a.list-group-item, a.list-group-item, button.list-group-item, button.list-group-
   box-sizing: border-box;
   background: #fff;
   position: relative;
-}
-
-
-p {
-  color: black !important;
 }
