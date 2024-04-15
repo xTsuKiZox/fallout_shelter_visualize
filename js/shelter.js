@@ -1249,6 +1249,14 @@ app.controller('dwellerController', function ($scope) {
     }
   });
 
+
+  $scope.$watch('other.death', function (newValue, oldValue) {
+    if (newValue === "Death") {
+      $scope.other.death = 'Death';
+    } else {
+      $scope.other.death = 'Not Death';
+    }
+  });
 });
 
 function preset(preset, saveFileName) {

@@ -6,6 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, width=device-width, user-scalable=no">
   <title>Fallout Shelter - Visualize</title>
+  <link rel="icon" type="image/png" href="./imgs/icon.png" />
   <meta name="description"
     content="Web app to Visualize Fallout Shelter save games. You can view dwellers SPECIAL, other stats and vault's resources.">
   <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -185,7 +186,7 @@
               <input type="text" readonly class="form-control" name="levelup" ng-model="dweller.experience.needLvUp">
             </div>
           </div>
-          
+
           <div class="form-group row">
             <div class="col-sm-4">
               <label>Skin Color</label>
@@ -299,8 +300,7 @@
 
             <div class="col-sm-4">
               <label>Is Death?</label>
-              <input type="text" class="form-control" name="death" ng-model="other.death ? 'Death' : 'Not Death'"
-                readonly>
+              <input type="text" class="form-control" name="death" readonly ng-model="other.death" />
             </div>
           </div>
         </form>
