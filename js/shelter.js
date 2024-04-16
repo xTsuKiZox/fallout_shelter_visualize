@@ -63,7 +63,7 @@ function handleFileSelect(evt) {
     }
     if (f) {
       var reader = new FileReader;
-      if (evt.target.id == "sav_file") {
+      if (evt.target.id == "sav_file" || evt.target.id == "sav_file5") {
         reader.onload = function (evt2) {
           try {
             decrypt(evt2, fileName, reader.result)
@@ -121,6 +121,17 @@ document.getElementById("sav_file").addEventListener("change", function (e) {
   handleFileSelect(e);
 }, false);
 
+document.getElementById("sav_file5").addEventListener("change", function (e) {
+  $('#changeSave').css('display', 'block');
+  $('.box').removeClass('hover').addClass('ready');
+  $('.instructions').hide();
+  handleFileSelect(e);
+}, false);
+
+window.addEventListener("unload", function () {
+  $('#changeSave').css('display', 'none');
+});
+
 document.ondragover = document.ondrop = function (e) {
   e.preventDefault();
   return false;
@@ -155,22 +166,27 @@ $('body .container .box')
 
 
 // Modifications
+let jsonDecode
+let isCharge = false
 function edit(fileName, save) {
   isLoaded = true;
+  jsonDecode = save
+  isCharge = true
   var scope = angular.element($('body').get(0)).scope();
   scope.$apply(function () {
     scope.save = save;
     scope.fileName = fileName;
   });
+  // scope.forS(jsonDecode);
 }
 
 var app = angular.module('shelter', []);
 
 app.controller('dwellerController', function ($scope) {
   $scope.section = 'vault';
-
   $scope.fileName = '';
   $scope.dweller = {};
+  $scope.rooms = {};
   $scope.statsName = ['Unknown', 'S.', 'P.', 'E.', 'C.', 'I.', 'A.', 'L.'];
   $scope.other = {};
   $scope.wastelandTeams = [];
@@ -341,6 +357,11 @@ app.controller('dwellerController', function ($scope) {
     _skinColor = colorConverter($scope.dweller.skinColor, true);
     _hairColor = colorConverter($scope.dweller.hairColor, true);
     setTimeout(colorHack, 200);
+    forStat()
+  };
+
+  $scope.editRooms = function (rooms) {
+    $scope.rooms = rooms;
   };
 
   $scope.editOthers = function (other) {
@@ -389,6 +410,10 @@ app.controller('dwellerController', function ($scope) {
 
   $scope.closeDweller = function (dweller) {
     $scope.dweller = {};
+  };
+
+  $scope.closeRooms = function (rooms) {
+    $scope.rooms = {};
   };
 
   $scope.editTeam = function (team) {
@@ -760,7 +785,7 @@ app.controller('dwellerController', function ($scope) {
       "SawedOffShotgun_Enhanced",
       "SawedOffShotgun_Rusty",
       "Shotgun"];
-      alert("Unlocked Recipes!");
+    alert("Unlocked Recipes!");
   }
 
   function extractCount() {
@@ -1220,7 +1245,202 @@ app.controller('dwellerController', function ($scope) {
     WorkDress: 'Rural Schoolmarm',
     WrestlerSpecial: 'Wrestler Outfit'
   };
+
+  $scope.$watch('dweller.gender', function (newValue, oldValue) {
+    if (newValue === 1) {
+      $scope.dweller.gender = 'Female';
+    } else if (newValue === 2) {
+      $scope.dweller.gender = 'Male';
+    }
+  });
+
+  $scope.$watch('save.vault.VaultMode', function (newValue, oldValue) {
+    if (newValue === "Normal") {
+      $scope.save.vault.VaultMode = 'Normal';
+    } else if (newValue === "Survival") {
+      $scope.save.vault.VaultMode = 'Survival';
+    }
+  });
+
+  $scope.$watch('save.vault.VaultTheme', function (newValue, oldValue) {
+    if (newValue === 0) {
+      $scope.save.vault.VaultTheme = 'Normal';
+    } else if (newValue === 1) {
+      $scope.save.vault.VaultTheme = 'Xmas';
+    } else if (newValue === 2) {
+      $scope.save.vault.VaultTheme = 'Halloween';
+    } else if (newValue === 3) {
+      $scope.save.vault.VaultTheme = 'ThanksGiving';
+    }
+  });
+
+  $scope.$watch('other.death', function (newValue, oldValue) {
+    if (newValue === "Death") {
+      $scope.other.death = 'Death';
+    } else {
+      $scope.other.death = 'Not Death';
+    }
+  });
+
+
+  $scope.training = {
+    1: {
+      2: 0.26,
+      3: 1.20,
+      4: 2.4,
+      5: 4.27,
+      6: 6.41,
+      7: 9.21,
+      8: 12.28,
+      9: 16.2,
+      10: 20.3,
+    },
+    2: {
+      2: 0.25,
+      3: 1.16,
+      4: 2.32,
+      5: 4.14,
+      6: 6.22,
+      7: 8.55,
+      8: 11.53,
+      9: 15.17,
+      10: 19.6,
+    },
+    3: {
+      2: 0.24,
+      3: 1.13,
+      4: 2.26,
+      5: 4.03,
+      6: 6.05,
+      7: 8.31,
+      8: 11.21,
+      9: 14.36,
+      10: 18.15,
+    }
+  }
+
+  function calculateTraining(room, dweller) {
+    if (dweller === 10) {
+      return "0 hours";
+    }
+    let trainingData = {};
+    for (let i = dweller + 1; i <= 10; i++) {
+      if ($scope.training[room] && $scope.training[room][i]) {
+        trainingData[i] = $scope.training[room][i];
+      }
+    }
+    let totalTraining = 0;
+    for (let key in trainingData) {
+      totalTraining += trainingData[key];
+    }
+    let roundedTotalTraining = Math.round(totalTraining * 100) / 100;
+    return roundedTotalTraining.toFixed(2) + " hours";
+  }
+
+
+
+
+
+  function forS(stats) {
+    $scope.$watch("save.vault.rooms", function (force) {
+      if (force && stats != undefined) {
+        const gymRooms = force.filter(room => room.type === "Gym");
+        let levelRoom = gymRooms[0].level;
+        let levelDweller = stats[1].value;
+        let newS = calculateTraining(levelRoom, levelDweller);
+        $scope.timeS = newS
+      }
+    });
+  }
+
+  function forP(stats) {
+    $scope.$watch("save.vault.rooms", function (perception) {
+      if (perception && stats != undefined) {
+        const gymRooms = perception.filter(room => room.type === "Armory");
+        let levelRoom = gymRooms[0].level;
+        let levelDweller = stats[2].value;
+        let newP = calculateTraining(levelRoom, levelDweller);
+        $scope.timeP = newP
+      }
+    });
+  }
+
+  function forE(stats) {
+    $scope.$watch("save.vault.rooms", function (perception) {
+      if (perception && stats != undefined) {
+        const gymRooms = perception.filter(room => room.type === "SuperRoom2");
+        let levelRoom = gymRooms[0].level;
+        let levelDweller = stats[3].value;
+        let newE = calculateTraining(levelRoom, levelDweller);
+        $scope.timeE = newE
+      }
+    });
+  }
+
+  function forC(stats) {
+    $scope.$watch("save.vault.rooms", function (perception) {
+      if (perception && stats != undefined) {
+        const gymRooms = perception.filter(room => room.type === "Bar");
+        let levelRoom = gymRooms[0].level;
+        let levelDweller = stats[4].value;
+        let newC = calculateTraining(levelRoom, levelDweller);
+        $scope.timeC = newC
+      }
+    });
+  }
+
+  function forI(stats) {
+    $scope.$watch("save.vault.rooms", function (perception) {
+      if (perception && stats != undefined) {
+        const gymRooms = perception.filter(room => room.type === "Classroom");
+        let levelRoom = gymRooms[0].level;
+        let levelDweller = stats[5].value;
+        let newI = calculateTraining(levelRoom, levelDweller);
+        $scope.timeI = newI
+      }
+    });
+  }
+
+  function forA(stats) {
+    $scope.$watch("save.vault.rooms", function (perception) {
+      if (perception && stats != undefined) {
+        const gymRooms = perception.filter(room => room.type === "Dojo");
+        let levelRoom = gymRooms[0].level;
+        let levelDweller = stats[6].value;
+        let newA = calculateTraining(levelRoom, levelDweller);
+        $scope.timeA = newA
+      }
+    });
+  }
+
+  function forL(stats) {
+    $scope.$watch("save.vault.rooms", function (perception) {
+      if (perception && stats != undefined) {
+        const gymRooms = perception.filter(room => room.type === "Casino");
+        let levelRoom = gymRooms[0].level;
+        let levelDweller = stats[7].value;
+        let newL = calculateTraining(levelRoom, levelDweller);
+        $scope.timeL = newL
+      }
+    });
+  }
+
+  function forStat() {
+    $scope.$watch("dweller.stats.stats", function (val) {
+      forS(val);
+      forP(val);
+      forE(val);
+      forC(val);
+      forI(val);
+      forA(val);
+      forL(val);
+    })
+  }
+
 });
+
+
+
 
 function preset(preset, saveFileName) {
 
