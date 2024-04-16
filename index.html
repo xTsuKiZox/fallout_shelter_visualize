@@ -200,6 +200,11 @@
               <input class="form-control" type="text" name="hairColor" ng-model="hairColor" readonly> <!-- jscolor -->
             </div>
 
+            <div class="col-sm-4" ng-if="dweller.equippedPet">
+              <label>Pet ?</label>
+              <input class="form-control" type="text" name="pet" ng-model="dweller.equippedPet.extraData.uniqueName"
+                readonly>
+            </div>
           </div>
 
           <div class="form-group row">
@@ -229,13 +234,6 @@
                 ng-model="dwellerweaponlist[dweller.equipedWeapon.id]" readonly>
             </div>
 
-            <!-- expreminetal/need to have already equiped a pet--><!--
-            <div class="col-sm-4">
-              <label>Equiped Pet</label>
-              <select class="form-control" name="equippedPet" ng-model="dweller.equippedPet.id"
-                ng-options="label as value for (label,value) in { sphynx_l: 'sphynx_l' }"></select>
-            </div>-->
-
             <div class="form-group row">
               <div class="col-sm-4">
                 <label>Rarity</label>
@@ -252,10 +250,49 @@
               <div class="bar" ng-class="'value' + stat.value"></div>
               <input type="text" readonly class="form-control" ng-model="stat.value" min="0" max="10">
             </div>
+          </div>
+          <hr />
 
+          <div class="form-group row">
+            <div class="col-sm-4">
+              <label>Time S</label>
+              <input type="text" class="form-control" name="timeS" ng-model="timeS" readonly>
+            </div>
+
+            <div class="col-sm-4">
+              <label>Time P</label>
+              <input type="text" class="form-control" name="timeP" ng-model="timeP" readonly>
+            </div>
+
+            <div class="col-sm-4">
+              <label>Time E</label>
+              <input type="text" class="form-control" name="timeE" ng-model="timeE" readonly>
+            </div>
           </div>
 
-          <hr />
+          <div class="form-group row">
+            <div class="col-sm-4">
+              <label>Time C</label>
+              <input type="text" class="form-control" name="timeC" ng-model="timeC" readonly>
+            </div>
+
+            <div class="col-sm-4">
+              <label>Time I</label>
+              <input type="text" class="form-control" name="timeI" ng-model="timeI" readonly>
+            </div>
+
+            <div class="col-sm-4">
+              <label>Time A</label>
+              <input type="text" class="form-control" name="timeA" ng-model="timeA" readonly>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-sm-4">
+              <label>Time L</label>
+              <input type="text" class="form-control" name="timeL" ng-model="timeL" readonly>
+            </div>
+          </div>
           <br>
           <br>
         </form>
@@ -302,10 +339,10 @@
           readonly>
         <br>
 
-        <label>Changer de sauvegarde :</label>
+        <label>Change save :</label>
         <br>
         <input type="file" id="sav_file5" name="sav_file5">
-        <p id="changeSave" ng-show="section === 'extras' && save.dwellers">Sauvegarde charger</p>
+        <p id="changeSave" ng-show="section === 'extras' && save.dwellers">Save load !</p>
 
 
         <hr />
@@ -522,6 +559,7 @@
     </div>
   </div>
 
+  <script src="js/other.js"></script>
   <script src="js/jquery-2.1.4.min.js"></script>
   <script src="js/angular.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
