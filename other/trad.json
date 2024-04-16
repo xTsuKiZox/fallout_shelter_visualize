@@ -1,0 +1,16 @@
+{
+    "FR": {
+        "sauvegardePasTrouver": "Aucun fichier de sauvegarde n'a été trouvé dans le dossier. Fermeture du terminal.",
+        "choix2": "Quel abri souhaitez vous choisir ? (1 - 2)",
+        "choix3": "Quel abri souhaitez vous choisir ? (1 - 2 - 3)",
+        "remerciement": "Merci d'utiliser Fallout Shelter Visualize ! Appuyez sur Entrée pour quitter...",
+        "erreurTape": "Le nombre est invalide."
+    },
+    "AN": {
+        "sauvegardePasTrouver": "No backup files were found in the folder. Closing the terminal.",
+        "choix2": "Which shelter would you like to choose? (1 - 2)",
+        "choix3": "Which shelter would you like to choose? (1 - 2 - 3)",
+        "remerciement": "Thank you for using Fallout Shelter Visualize! Press Enter to exit...",
+        "erreurTape": "The number is invalid."
+    }
+}
