@@ -91,7 +91,7 @@ a.tab:focus {
   border-left-width: 0;
 }
 
-.dwellers {
+.dwellers, .vault, .rooms {
   height: 100%;
   overflow-y: scroll;
 }
@@ -99,7 +99,7 @@ a.tab:focus {
 .dweller_info,
 .other_info,
 .wasteland_info,
-.vault_info {
+.vault_info, .rooms_info {
   height: 100%;
   padding: 15px 15px 15px 0;
 
@@ -238,6 +238,9 @@ button.list-group-item {
   background-color: #89E697 !important;
 }
 
+.recolt {
+  background-color: #89E697 !important;
+}
 
 .btn-primary {
   background-color: #467bb7;

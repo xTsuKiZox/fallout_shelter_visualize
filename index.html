@@ -15,7 +15,6 @@
 
 <body ng-app="shelter" ng-controller="dwellerController">
   <div class="container">
-
     <div class="row box" ng-show="section == 'vault'">
       <div class="col-sm-12 vault_info">
         <form ng-show="fileName" name="vaultForm">
@@ -200,7 +199,7 @@
               <label>Hair Color</label>
               <input class="form-control" type="text" name="hairColor" ng-model="hairColor" readonly> <!-- jscolor -->
             </div>
-              
+
           </div>
 
           <div class="form-group row">
@@ -261,6 +260,37 @@
           <br>
         </form>
 
+      </div>
+    </div>
+
+    <div class="row box" ng-show="section == 'rooms'">
+      <div class="rooms list-group col-sm-4">
+        <a ng-repeat="d in save.vault.rooms | filter:{ type: '!Elevator' }" ng-click="editRooms(d);"
+          ng-class="{ 'active': rooms == d, 'recolt': d.currentStateName === 'Idle' }" class="list-group-item">{{ d.type
+          }}</a>
+      </div>
+      <div class="rooms_info col-sm-8">
+        <a href="#" class="back_button glyphicon glyphicon-chevron-left" ng-click="closeRooms()">Back</a>
+        <form name="roomsForm">
+          <div class="form-group row">
+            <div class="col-sm-4">
+              <label>Level</label>
+              <input type="text" class="form-control" name="levelRoom" placeholder="Level" ng-model="rooms.level"
+                readonly>
+            </div>
+            <div class="col-sm-4">
+              <label>Dwellers</label>
+              <input type="text" class="form-control" name="dwellerRoom" placeholder="Dwellers"
+                ng-model="rooms.dwellers.length" readonly>
+            </div>
+
+            <div class="col-sm-4">
+              <label>State</label>
+              <input type="text" class="form-control" name="state" ng-model="rooms.currentStateName"
+                ng-class="{ 'recolt': rooms.currentStateName === 'Idle'}" placeholder="State" readonly>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
 
@@ -463,7 +493,11 @@
         ng-class="{ 'active': section == 'vault' }">Vault {{ save.vault.VaultName }}<small></small></a>
       <a href="" ng-hide="!save.dwellers" class="tab" ng-click="section = 'dwellers'"
         ng-class="{ 'active': section == 'dwellers' }">Dwellers <small>({{ save.dwellers.dwellers.length }})</small></a>
-      <a href="" ng-hide="!save.dwellers" class="tab" ng-click="section = 'Others'"
+      <a href="" ng-hide="!save.vault" class="tab" ng-click="section = 'rooms'"
+        ng-class="{ 'active': section == 'rooms' }">Rooms <small>({{ (save.vault.rooms | filter:{ type: '!Elevator'
+          }).length
+          }})</small></a>
+      <a href="" ng-hide="!save.vault" class="tab" ng-click="section = 'Others'"
         ng-class="{ 'active': section == 'Others' }">Others <small>({{ save.dwellers.actors.length }})</small></a>
       <a href="" ng-hide="!wastelandTeams.length" class="tab" ng-click="section = 'wastelandD'"
         ng-class="{ 'active': section == 'wastelandD' }">WastelandD <small>({{ wastelandTeams.length }})</small></a>
@@ -486,15 +520,16 @@
       <p>For Steam Version the save is in :<br /> "C:\Users\YOURUSERNAME\AppData\Local\FalloutShelter"</p>
       <p> For Android Version the Save is in :<br /> "storage/sdcard/Android/data/com.bethsoft.falloutshelter/files"</p>
     </div>
+  </div>
 
-    <script src="js/jquery-2.1.4.min.js"></script>
-    <script src="js/angular.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/json2.min.js"></script>
-    <script src="js/aes.js"></script>
-    <script src="js/FileSaver.js"></script>
-    <script src="js/shelter.js"></script>
-    <script src="js/jscolor.js"></script>
+  <script src="js/jquery-2.1.4.min.js"></script>
+  <script src="js/angular.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/json2.min.js"></script>
+  <script src="js/aes.js"></script>
+  <script src="js/FileSaver.js"></script>
+  <script src="js/shelter.js"></script>
+  <script src="js/jscolor.js"></script>
 
 </body>
 

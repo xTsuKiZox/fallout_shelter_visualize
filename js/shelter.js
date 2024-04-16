@@ -359,6 +359,10 @@ app.controller('dwellerController', function ($scope) {
     setTimeout(colorHack, 200);
   };
 
+  $scope.editRooms = function (rooms) {
+    $scope.rooms = rooms;
+  };
+
   $scope.editOthers = function (other) {
     $scope.other = other;
     _otherName = $scope.other.name;
@@ -1269,7 +1273,6 @@ app.controller('dwellerController', function ($scope) {
     }
   });
 
-
   $scope.$watch('other.death', function (newValue, oldValue) {
     if (newValue === "Death") {
       $scope.other.death = 'Death';
@@ -1287,6 +1290,10 @@ app.controller('dwellerController', function ($scope) {
     3: {}
   }
 
+
+  $scope.$watch('save.vault', function (newValue, oldValue) {
+    console.log(newValue)
+  });
 
   // $scope.forS = function (stats) {
   //   if (isCharge && jsonDecode !== undefined) {
@@ -1308,18 +1315,18 @@ app.controller('dwellerController', function ($scope) {
 
   $scope.forS = function (stats) {
     if (isCharge && jsonDecode !== undefined) {
-      console.log(stats)
+      // console.log(stats)
       if (stats !== undefined) {
-        console.log(stats);
+        // console.log(stats);
         // Vous pouvez traiter le tableau de statistiques ici
       }
     }
   };
 
-    // < !-- < div class="col-sm-4" >
-    //           <label>Time S</label>
-    //           <input type="text" class="form-control" name="timeS" ng-init="forS(dweller.stats.stats)" readonly>
-    //         </div> -->
+  // < !-- < div class="col-sm-4" >
+  //           <label>Time S</label>
+  //           <input type="text" class="form-control" name="timeS" ng-init="forS(dweller.stats.stats)" readonly>
+  //         </div> -->
 
 
 
