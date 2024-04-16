@@ -24,9 +24,9 @@ def oneShelter(lang):
         driver.get("https://falloutsheltervisualize.tsukizo.fr/")
         input_file = driver.find_element(By.ID, 'sav_file')
         input_file.send_keys(fichier_a_telecharger)
-        input(traductions[lang]["remerciement"])
+        input("\n" +  traductions[lang]["remerciement"])
     else:
-        print(traductions[lang]["sauvegardePasTrouver"])
+        print("\n" + traductions[lang]["sauvegardePasTrouver"])
 
 def twoShelter(lang):
     chemin_dossier = os.path.expanduser("~") + "\\AppData\\Local\\FalloutShelter"
@@ -57,10 +57,10 @@ def twoShelter(lang):
     else:
         print(traductions[lang]["erreurTape"])
 
-def threeShelter():
-        chemin_dossier = os.path.expanduser("~") + "\\AppData\\Local\\FalloutShelter"
-        choix3 = input(traductions[lang]["choix3"])
-    
+def threeShelter(lang):
+    chemin_dossier = os.path.expanduser("~") + "\\AppData\\Local\\FalloutShelter"
+    choix3 = input(traductions[lang]["choix3"])
+
     if choix3 == "1":
         fichiers_vault = [f for f in os.listdir(chemin_dossier) if f.startswith("Vault1") and f.endswith(".sav")]
         if fichiers_vault:
@@ -82,8 +82,7 @@ def threeShelter():
             input_file.send_keys(fichier_a_telecharger)
             input(traductions[lang]["remerciement"])
         else:
-            print(traductions[lang]["sauvegardePasTrouver"])
-            
+            print(traductions[lang]["sauvegardePasTrouver"])       
     elif choix3 == "3":
         fichiers_vault = [f for f in os.listdir(chemin_dossier) if f.startswith("Vault3") and f.endswith(".sav")]
         if fichiers_vault:
@@ -105,13 +104,8 @@ my_output = my_art.to_ascii(columns=50)
 print(my_output)
 #endregion IMAGE
 
-#region TEXTE HOME
-# with open('./txt/home.txt', 'r') as file:
-#     textehome = file.read()
-#endregion TEXTE HOME
-
 #region ABRI
-language = input('\n > FR \n > AN')
+language = input("Écrivez pour choisir la langue | Write to choose language \n\n > FR \n > AN")
 
 if language == 'FR' or "fr":
     abri = input("Combien avez vous d'abri ?")
