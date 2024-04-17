@@ -23,7 +23,12 @@ Fallout Shelter Visualize allows you to view more in depth on your Shelter in th
 # Utilization
 1. To use Fallout Shelter Visualize, download the code in : Code > Download ZIP
 2. From your computer, open the folder that contains the Fallout Shelter Visualize Software,
-3. Right-click and tap "open a terminal" or "open",
+3. Right-click and "open",
+4. Enjoy !
+   
+OR
+
+3. Right-click and tap "open a terminal",
 4. Write this command in the terminal :  
 ``` py main.py ``` 
 5. Enjoy !
