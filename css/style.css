@@ -20,10 +20,11 @@ body>.container {
 }
 
 body>.container2 {
+  height: 100px;
   width: 900px;
-  position: absolute;
-  top: 69%;
-  left: 26.9%;
+  position: relative;
+  top: 69.5%;
+  left: 26.65%;
   padding: 0;
 }
 
@@ -80,7 +81,7 @@ a.tab:focus {
   border-top: 4px solid #5584AC;
   border-right: 4px solid #5584AC;
   border-left: 4px solid #5584AC;
-  border-radius: 0px 0 0px 0px; 
+  border-radius: 0px 0 0px 0px;
   overflow: hidden;
   box-sizing: border-box;
   background: #fff;
@@ -95,7 +96,7 @@ a.tab:focus {
   border-right: 4px solid #5584AC;
   border-bottom: 4px solid #5584AC;
   border-left: 4px solid #5584AC;
-  border-radius: 0px 0 10px 10px; 
+  border-radius: 0px 0 10px 10px;
   overflow: hidden;
   box-sizing: border-box;
   background: #fff;
