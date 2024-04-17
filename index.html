@@ -1,4 +1,3 @@
-o
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,6 +6,7 @@ o
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, width=device-width, user-scalable=no">
   <title>Fallout Shelter - Visualize</title>
+  <link rel="icon" type="image/png" href="./imgs/icon.png" />
   <meta name="description"
     content="Web app to Visualize Fallout Shelter save games. You can view dwellers SPECIAL, other stats and vault's resources.">
   <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -15,26 +15,25 @@ o
 
 <body ng-app="shelter" ng-controller="dwellerController">
   <div class="container">
-
     <div class="row box" ng-show="section == 'vault'">
       <div class="col-sm-12 vault_info">
         <form ng-show="fileName" name="vaultForm">
           <div class="form-group row" ng-class="{ 'has-error': vaultForm.vaultName.$invalid }">
             <div class="col-sm-4">
               <label>Name</label>
-              <input type="number" class="form-control" name="vaultName" placeholder="Vault Name" ng-model="vaultName"
-                min="0" max="999">
+              <input type="text" readonly class="form-control" name="vaultName" placeholder="Vault Name"
+                ng-model="vaultName" min="0" max="999">
             </div>
 
             <div class="col-sm-4">
               <label>Caps</label>
-              <input type="number" class="form-control" min="0" name="caps"
+              <input type="text" readonly class="form-control" min="0" name="caps"
                 ng-model="save.vault.storage.resources.Nuka">
             </div>
 
             <div class="col-sm-4">
               <label>Nuka Cola Quantums</label>
-              <input type="number" class="form-control" min="0" name="nuka"
+              <input type="text" readonly class="form-control" min="0" name="nuka"
                 ng-model="save.vault.storage.resources.NukaColaQuantum">
             </div>
           </div>
@@ -42,24 +41,24 @@ o
           <div class="form-group row">
             <div class="col-sm-4">
               <label>Lunch Boxes</label>
-              <input type="number" class="form-control" min="0" name="lunchbox" ng-model="lunchboxCount">
+              <input type="text" readonly class="form-control" min="0" name="lunchbox" ng-model="lunchboxCount">
             </div>
 
             <div class="col-sm-4">
               <label>Mr. Handies</label>
-              <input type="number" class="form-control" min="0" name="handy" ng-model="handyCount">
+              <input type="text" readonly class="form-control" min="0" name="handy" ng-model="handyCount">
             </div>
 
             <div class="col-sm-4">
               <label>Pet Carrier</label>
-              <input type="number" class="form-control" min="0" name="petCarrier" ng-model="petCarrierCount">
+              <input type="text" readonly class="form-control" min="0" name="petCarrier" ng-model="petCarrierCount">
             </div>
           </div>
 
           <div class="form-group row">
             <div class="col-sm-4">
               <label>Starter Pack</label>
-              <input type="number" class="form-control" min="0" name="starterPack" ng-model="starterPackCount">
+              <input type="text" readonly class="form-control" min="0" name="starterPack" ng-model="starterPackCount">
             </div>
           </div>
 
@@ -68,33 +67,31 @@ o
           <div class="form-group row">
             <div class="col-sm-4">
               <label>Vault Mode</label>
-              <select class="form-control" name="VaultMode" ng-model="save.vault.VaultMode"
-                ng-options="label as value for (label,value) in { Normal: 'Normal', Survival: 'Survival' }"></select>
+              <input type="text" class="form-control" name="VaultMode" ng-model="save.vault.VaultMode" readonly>
             </div>
 
             <div class="col-sm-4">
               <label>Vault Theme</label>
-              <select class="form-control" name="VaultTheme" ng-model="save.vault.VaultTheme"
-                ng-options="key*1 as value for (key,value) in { 0: 'Normal', 1: 'Xmas', 2: 'Halloween', 3: 'ThanksGiving' }"></select>
+              <input type="text" class="form-control" name="VaultTheme" ng-model="save.vault.VaultTheme" readonly>
             </div>
           </div>
 
           <div class="form-group row">
             <div class="col-sm-4">
               <label>Food</label>
-              <input type="number" class="form-control" min="0" name="caps"
+              <input type="text" readonly class="form-control" min="0" name="caps"
                 ng-model="save.vault.storage.resources.Food">
             </div>
 
             <div class="col-sm-4">
               <label>Energy</label>
-              <input type="number" class="form-control" min="0" name="energy"
+              <input type="text" readonly class="form-control" min="0" name="energy"
                 ng-model="save.vault.storage.resources.Energy">
             </div>
 
             <div class="col-sm-4">
               <label>Water</label>
-              <input type="number" class="form-control" min="0" name="water"
+              <input type="text" readonly class="form-control" min="0" name="water"
                 ng-model="save.vault.storage.resources.Water">
             </div>
           </div>
@@ -102,75 +99,20 @@ o
           <div class="form-group row">
             <div class="col-sm-6">
               <label>Stimpack</label>
-              <input type="number" class="form-control" min="0" name="stimpack"
+              <input type="text" readonly class="form-control" min="0" name="stimpack"
                 ng-model="save.vault.storage.resources.StimPack">
             </div>
 
             <div class="col-sm-6">
               <label>RadAway</label>
-              <input type="number" class="form-control" min="0" name="radaway"
+              <input type="text" readonly class="form-control" min="0" name="radaway"
                 ng-model="save.vault.storage.resources.RadAway">
             </div>
           </div>
 
-          <hr />
-
           <div class="form-group row">
             <div class="col-sm-4">
-              <label>Remove Rocks</label><br />
-              <button type="button" class="btn btn-primary" ng-click="removeRocks()">Activate</button>
-            </div>
-
-            <div class="col-sm-4">
-              <label>Unlock All Rooms</label><br />
-              <button type="button" class="btn btn-primary" ng-click="unlockrooms()">Activate</button>
-            </div>
-
-            <div class="col-sm-4">
-              <label>Unlock All Recipes</label><br />
-              <button type="button" class="btn btn-primary" ng-click="unlockrecipes()">Activate</button>
-            </div>
-          </div>
-
-          <hr />
-
-          <div class="form-group row">
-            <div class="col-sm-4">
-              <label>Max All Dweller Stats</label><br />
-              <button type="button" class="btn btn-primary" ng-click="maxSpecialAll()">Activate</button>
-            </div>
-
-            <div class="col-sm-4">
-              <label>Max All Dweller Happiness</label><br />
-              <button type="button" class="btn btn-primary" ng-click="maxhappinessAll()">Activate</button>
-            </div>
-
-            <div class="col-sm-4">
-              <label>Heal All Dwellers</label><br />
-              <button type="button" class="btn btn-primary" ng-click="healAll()">Activate</button>
-            </div>
-          </div>
-
-          <div class="form-group row">
-            <div class="col-sm-4">
-              <label>Clear Emergency on all rooms</label><br />
-              <button type="button" class="btn btn-primary" ng-click="clearemergency()">Activate</button>
-            </div>
-
-            <div class="col-sm-4">
-              <label>Accept all Dwellers Waiting</label><br />
-              <button type="button" class="btn btn-primary" ng-click="acceptdwellersWaiting()">Activate</button>
-            </div>
-
-            <div class="col-sm-4">
-              <label>Unlock Themes</label><br />
-              <button type="button" class="btn btn-primary" ng-click="unlockthemes()">Activate</button>
-            </div>
-          </div>
-
-          <div class="form-group row">
-            <div class="col-sm-4">
-              <label>Save app Version:</label><label ng-bind="save.appVersion"></label>
+              <label>Save app Version :</label><label ng-bind="save.appVersion"></label>
             </div>
           </div>
 
@@ -181,8 +123,9 @@ o
 
     <div class="row box" ng-show="section == 'dwellers'">
       <div class="dwellers list-group col-sm-4">
-        <a ng-repeat="d in save.dwellers.dwellers" ng-click="editDweller(d);" ng-class="{ 'active': dweller == d }"
-          class="list-group-item">{{ d.name }} {{ d.lastName }}</a>
+        <a ng-repeat="d in save.dwellers.dwellers" ng-click="editDweller(d);"
+          ng-class="{ 'active': dweller == d, 'needLevel': d.experience.needLvUp }" class="list-group-item">{{ d.name }}
+          {{ d.lastName }}</a>
       </div>
       <div class="dweller_info col-sm-8" ng-hide="!dweller.name">
         <a href="#" class="back_button glyphicon glyphicon-chevron-left" ng-click="closeDweller()">Back</a>
@@ -190,71 +133,85 @@ o
           <div class="form-group row">
             <div class="col-sm-4">
               <label>First Name</label>
-              <input type="text" class="form-control" name="firstName" placeholder="First Name" ng-model="firstName">
+              <input type="text" class="form-control" name="firstName" placeholder="First Name" ng-model="firstName"
+                readonly>
             </div>
 
             <div class="col-sm-4">
               <label>Last Name</label>
               <input type="text" class="form-control" name="lastName" placeholder="Last Name"
-                ng-model="dweller.lastName">
+                ng-model="dweller.lastName" readonly>
             </div>
 
             <div class="col-sm-4">
               <label>Gender</label>
-              <select class="form-control" name="gender" ng-model="dweller.gender"
-                ng-options="key*1 as value for (key,value) in { 1: 'Female', 2: 'Male' }"></select>
+              <input type="text" class="form-control" name="gender" ng-model="dweller.gender" readonly>
             </div>
           </div>
 
           <div class="form-group row">
             <div class="col-sm-4">
               <label>Happiness</label>
-              <input type="number" min="0" max="100" class="form-control" name="happiness"
+              <input type="text" readonly min="0" max="100" class="form-control" name="happiness"
                 ng-model="dweller.happiness.happinessValue">
             </div>
 
             <div class="col-sm-4">
               <label>Health</label>
-              <input type="number" class="form-control" name="health" min="0" max="{{dweller.health.maxHealth}}"
+              <input type="text" readonly class="form-control" name="health" min="0" max="{{dweller.health.maxHealth}}"
                 ng-model="dweller.health.healthValue">
             </div>
 
             <div class="col-sm-4">
               <label>Max Health</label>
-              <input type="number" class="form-control" name="maxhealth" ng-model="dweller.health.maxHealth">
+              <input type="text" readonly class="form-control" name="maxhealth" ng-model="dweller.health.maxHealth">
             </div>
           </div>
 
           <div class="form-group row">
             <div class="col-sm-4">
               <label>Radiation</label>
-              <input type="number" class="form-control" min="0" max="{{dweller.health.maxHealth}}" name="radiation"
-                ng-model="dweller.health.radiationValue">
+              <input type="text" readonly class="form-control" min="0" max="{{dweller.health.maxHealth}}"
+                name="radiation" ng-model="dweller.health.radiationValue">
             </div>
 
             <div class="col-sm-4">
               <label>Level</label>
-              <input type="number" class="form-control" name="level" min="1" ng-model="dweller.experience.currentLevel">
+              <input type="text" readonly class="form-control" name="level" min="1"
+                ng-model="dweller.experience.currentLevel">
+            </div>
+
+            <div class="col-sm-4">
+              <label>Need level up ?</label>
+              <input type="text" readonly class="form-control" name="levelup" ng-model="dweller.experience.needLvUp"
+                ng-class="{ 'needLevel': dweller.experience.needLvUp }">
             </div>
           </div>
 
           <div class="form-group row">
             <div class="col-sm-4">
               <label>Skin Color</label>
-              <input class="form-control jscolor" id="skinColor" name="skincolor" ng-model="skinColor">
+              <input class="form-control" type="text" id="skinColor" name="skincolor" ng-model="skinColor" readonly>
+              <!-- jscolor -->
             </div>
 
             <div class="col-sm-4">
               <label>Hair Color</label>
-              <input class="form-control jscolor" name="hairColor" ng-model="hairColor">
+              <input class="form-control" type="text" name="hairColor" ng-model="hairColor" readonly> <!-- jscolor -->
+            </div>
+
+            <div class="col-sm-4" ng-if="dweller.equippedPet">
+              <label>Pet ?</label>
+              <input class="form-control" type="text" name="pet" ng-model="dweller.equippedPet.extraData.uniqueName"
+                readonly>
             </div>
           </div>
 
           <div class="form-group row">
             <div class="col-sm-4" ng-if="dweller.gender==1">
               <label>Pregnant</label>
-              <select class="form-control" name="pregnant" ng-model="dweller.pregnant"
-                ng-options="o.v as o.n for o in [{ n: 'Not Pregnant', v: false }, { n: 'Pregnant', v: true }]"></select>
+              <input type="text" class="form-control" name="pregnant" ng-model="dweller.pregnant" readonly
+                ng-value="dweller.pregnant ? 'Pregnant' : 'Not Pregnant'">
             </div>
 
             <div class="col-sm-4" ng-if="dweller.pregnant">
@@ -267,22 +224,22 @@ o
           <div class="form-group row">
             <div class="col-sm-4">
               <label>Equiped Outfit</label>
-              <select class="form-control" name="equipedOutfit" ng-model="dweller.equipedOutfit.id"
-                ng-options="label as value for (label,value) in dwelleroutfitslist"></select>
+              <input type="text" class="form-control" name="equipedOutfit"
+                ng-model="dwelleroutfitslist[dweller.equipedOutfit.id]" readonly>
             </div>
 
             <div class="col-sm-4">
               <label>Equiped Weapon</label>
-              <select class="form-control" name="equipedWeaponid" ng-model="dweller.equipedWeapon.id"
-                ng-options="label as value for (label,value) in dwellerweaponlist"></select>
+              <input type="text" class="form-control" name="equipedWeaponid"
+                ng-model="dwellerweaponlist[dweller.equipedWeapon.id]" readonly>
             </div>
 
-            <!-- expreminetal/need to have already equiped a pet--><!--
-            <div class="col-sm-4">
-              <label>Equiped Pet</label>
-              <select class="form-control" name="equippedPet" ng-model="dweller.equippedPet.id"
-                ng-options="label as value for (label,value) in { sphynx_l: 'sphynx_l' }"></select>
-            </div>-->
+            <div class="form-group row">
+              <div class="col-sm-4">
+                <label>Rarity</label>
+                <input type="text" class="form-control" name="rarity" ng-model="dweller.rarity" readonly>
+              </div>
+            </div>
           </div>
 
           <hr />
@@ -291,18 +248,119 @@ o
             <div class="col-sm-1 stat" ng-repeat="stat in dweller.stats.stats">
               <label ng-bind="statsName[$index]" class="center"></label>
               <div class="bar" ng-class="'value' + stat.value"></div>
-              <input type="number" class="form-control" ng-model="stat.value" min="0" max="10">
+              <input type="text" readonly class="form-control" ng-model="stat.value" min="0" max="10">
+            </div>
+          </div>
+          <hr />
+
+          <div class="form-group row">
+            <div class="col-sm-4">
+              <label>Time S</label>
+              <input type="text" class="form-control" name="timeS" ng-model="timeS" readonly>
+            </div>
+
+            <div class="col-sm-4">
+              <label>Time P</label>
+              <input type="text" class="form-control" name="timeP" ng-model="timeP" readonly>
+            </div>
+
+            <div class="col-sm-4">
+              <label>Time E</label>
+              <input type="text" class="form-control" name="timeE" ng-model="timeE" readonly>
             </div>
           </div>
 
-          <hr />
+          <div class="form-group row">
+            <div class="col-sm-4">
+              <label>Time C</label>
+              <input type="text" class="form-control" name="timeC" ng-model="timeC" readonly>
+            </div>
 
-          <div class="row save">
-            <button type="button" class="btn btn-primary pull-right" ng-click="maxSpecial()">Max Stats</button>
+            <div class="col-sm-4">
+              <label>Time I</label>
+              <input type="text" class="form-control" name="timeI" ng-model="timeI" readonly>
+            </div>
+
+            <div class="col-sm-4">
+              <label>Time A</label>
+              <input type="text" class="form-control" name="timeA" ng-model="timeA" readonly>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-sm-4">
+              <label>Time L</label>
+              <input type="text" class="form-control" name="timeL" ng-model="timeL" readonly>
+            </div>
           </div>
           <br>
           <br>
         </form>
+
+      </div>
+    </div>
+
+    <div class="row box" ng-show="section == 'rooms'">
+      <div class="rooms list-group col-sm-4">
+        <a ng-repeat="d in save.vault.rooms | filter:{ type: '!Elevator' }" ng-click="editRooms(d);"
+          ng-class="{ 'active': rooms == d, 'recolt': d.currentStateName === 'Idle' }" class="list-group-item">{{ d.type
+          }}</a>
+      </div>
+      <div class="rooms_info col-sm-8">
+        <a href="#" class="back_button glyphicon glyphicon-chevron-left" ng-click="closeRooms()">Back</a>
+        <form name="roomsForm">
+          <div class="form-group row">
+            <div class="col-sm-4">
+              <label>Level</label>
+              <input type="text" class="form-control" name="levelRoom" placeholder="Level" ng-model="rooms.level"
+                readonly>
+            </div>
+            <div class="col-sm-4">
+              <label>Dwellers</label>
+              <input type="text" class="form-control" name="dwellerRoom" placeholder="Dwellers"
+                ng-model="rooms.dwellers.length" readonly>
+            </div>
+
+            <div class="col-sm-4">
+              <label>State</label>
+              <input type="text" class="form-control" name="state" ng-model="rooms.currentStateName"
+                ng-class="{ 'recolt': rooms.currentStateName === 'Idle'}" placeholder="State" readonly>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="row box" ng-show="section == 'extras'">
+      <div class="col-sm-12 vault_info">
+
+        <label title="Savefile names can only be 'Vault1.sav', 'Vault2.sav' or 'Vault3.sav'">Savefile Name: </label>
+        <input type="text" name="presetSaveName" id="presetSaveName" placeholder="Vault1.sav" value="Vault2.sav"
+          readonly>
+        <br>
+
+        <label>Change save :</label>
+        <br>
+        <input type="file" id="sav_file5" name="sav_file5">
+        <p id="changeSave" ng-show="section === 'extras' && save.dwellers">Save load !</p>
+
+
+        <hr />
+        <br>
+        <center><b><a href="SaveDecrypt.html" target="_blank">Fallout Shelter Save Decryptor</a></b></center>
+        <br>
+        <center><b><a href="https://github.com/xTsuKiZox/fallout_shelter_visualize" target="_blank">View the Source
+              Code</a></b>
+        </center>
+        <br>
+        <center><label>Updated by <a href="https://github.com/xTsuKiZox/" target="_blank">TsuKiZo</a></label></center>
+        <br>
+        <center><label>Basic project by <a href="https://github.com/rakion99/" target="_blank">rakion99</a> &amp; <a
+              href="https://github.com/TheCreatorJames/" target="_blank">TheCreatorJames</a></label></center>
+        <br>
+        <center><label>Project Originally by <a href="https://github.com/MobileSam/shelter-editor"
+              target="_blank">MobileSam</a>.</label>
+        </center>
 
       </div>
     </div>
@@ -318,18 +376,17 @@ o
           <div class="form-group row">
             <div class="col-sm-4">
               <label>Name</label>
-              <input type="text" class="form-control" name="otherName" placeholder="Name" ng-model="otherName">
+              <input type="text" class="form-control" name="otherName" placeholder="Name" ng-model="otherName" readonly>
             </div>
 
             <div class="col-sm-4">
               <label>Health</label>
-              <input type="number" class="form-control" name="healthother" min="0" ng-model="other.health">
+              <input type="text" readonly class="form-control" name="healthother" min="0" ng-model="other.health">
             </div>
 
             <div class="col-sm-4">
               <label>Is Death?</label>
-              <select class="form-control" name="death" ng-model="other.death"
-                ng-options="o.v as o.n for o in [{ n: 'Not Death', v: false }, { n: 'Death', v: true }]"></select>
+              <input type="text" class="form-control" name="death" readonly ng-model="other.death" />
             </div>
           </div>
         </form>
@@ -349,37 +406,38 @@ o
           <div class="form-group row">
             <div class="col-sm-6">
               <label>Time Spent <small>(seconds)</small></label>
-              <input type="number" class="form-control" name="spent" ng-model="elapsedTimeAliveExploring">
+              <input type="text" readonly class="form-control" name="spent" ng-model="elapsedTimeAliveExploring">
             </div>
 
             <div class="col-sm-6">
               <label>Return Duration <small>(seconds)</small></label>
-              <input type="number" class="form-control" name="return" ng-model="returnTripDuration">
+              <input type="text" readonly class="form-control" name="return" ng-model="returnTripDuration">
             </div>
           </div>
 
           <div class="form-group row">
             <div class="col-sm-6">
               <label>Health</label>
-              <input type="number" class="form-control" name="health" ng-model="team.dweller.health.healthValue">
+              <input type="text" readonly class="form-control" name="health" ng-model="team.dweller.health.healthValue">
             </div>
 
             <div class="col-sm-6">
               <label>Radiation</label>
-              <input type="number" class="form-control" name="radiation" ng-model="team.dweller.health.radiationValue">
+              <input type="text" readonly class="form-control" name="radiation"
+                ng-model="team.dweller.health.radiationValue">
             </div>
           </div>
 
           <div class="form-group row">
             <div class="col-sm-6">
               <label>Stimpack</label>
-              <input type="number" class="form-control" name="stimpack"
+              <input type="text" readonly class="form-control" name="stimpack"
                 ng-model="teamEquipment.storage.resources.StimPack">
             </div>
 
             <div class="col-sm-6">
               <label>RadAway</label>
-              <input type="number" class="form-control" name="radaway"
+              <input type="text" readonly class="form-control" name="radaway"
                 ng-model="teamEquipment.storage.resources.RadAway">
             </div>
           </div>
@@ -387,12 +445,13 @@ o
           <div class="form-group row">
             <div class="col-sm-6">
               <label>Caps</label>
-              <input type="number" class="form-control" name="wcaps" ng-model="teamEquipment.storage.resources.Nuka">
+              <input type="text" readonly class="form-control" name="wcaps"
+                ng-model="teamEquipment.storage.resources.Nuka">
             </div>
 
             <div class="col-sm-6">
               <label>Nuka Cola Quantum</label>
-              <input type="number" class="form-control" name="wquantum"
+              <input type="text" readonly class="form-control" name="wquantum"
                 ng-model="teamEquipment.storage.resources.NukaColaQuantum">
             </div>
           </div>
@@ -415,19 +474,19 @@ o
           <div class="form-group row">
             <div class="col-sm-6">
               <label>Time Spent <small>(seconds)</small></label>
-              <input type="number" class="form-control" name="spent" ng-model="elapsedTimeAliveExploring">
+              <input type="text" readonly class="form-control" name="spent" ng-model="elapsedTimeAliveExploring">
             </div>
 
             <div class="col-sm-6">
               <label>Return Duration <small>(seconds)</small></label>
-              <input type="number" class="form-control" name="return" ng-model="returnTripDuration">
+              <input type="text" readonly class="form-control" name="return" ng-model="returnTripDuration">
             </div>
           </div>
 
           <div class="form-group row">
             <div class="col-sm-6">
               <label>Health</label>
-              <input type="number" class="form-control" name="health" ng-model="team.actor.health">
+              <input type="text" readonly class="form-control" name="health" ng-model="team.actor.health">
             </div>
 
           </div>
@@ -435,13 +494,13 @@ o
           <div class="form-group row">
             <div class="col-sm-6">
               <label>Stimpack</label>
-              <input type="number" class="form-control" name="stimpack"
+              <input type="text" readonly class="form-control" name="stimpack"
                 ng-model="team.actor.equipment.storage.resources.StimPack">
             </div>
 
             <div class="col-sm-6">
               <label>RadAway</label>
-              <input type="number" class="form-control" name="radaway"
+              <input type="text" readonly class="form-control" name="radaway"
                 ng-model="team.actor.equipment.storage.resources.RadAway">
             </div>
           </div>
@@ -449,13 +508,13 @@ o
           <div class="form-group row">
             <div class="col-sm-6">
               <label>Caps</label>
-              <input type="number" class="form-control" name="wcaps"
+              <input type="text" readonly class="form-control" name="wcaps"
                 ng-model="team.actor.equipment.storage.resources.Nuka">
             </div>
 
             <div class="col-sm-6">
               <label>Nuka Cola Quantum</label>
-              <input type="number" class="form-control" name="wquantum"
+              <input type="text" readonly class="form-control" name="wquantum"
                 ng-model="team.actor.equipment.storage.resources.NukaColaQuantum">
             </div>
           </div>
@@ -471,7 +530,11 @@ o
         ng-class="{ 'active': section == 'vault' }">Vault {{ save.vault.VaultName }}<small></small></a>
       <a href="" ng-hide="!save.dwellers" class="tab" ng-click="section = 'dwellers'"
         ng-class="{ 'active': section == 'dwellers' }">Dwellers <small>({{ save.dwellers.dwellers.length }})</small></a>
-      <a href="" ng-hide="!save.dwellers" class="tab" ng-click="section = 'Others'"
+      <a href="" ng-hide="!save.vault" class="tab" ng-click="section = 'rooms'"
+        ng-class="{ 'active': section == 'rooms' }">Rooms <small>({{ (save.vault.rooms | filter:{ type: '!Elevator'
+          }).length
+          }})</small></a>
+      <a href="" ng-hide="!save.vault" class="tab" ng-click="section = 'Others'"
         ng-class="{ 'active': section == 'Others' }">Others <small>({{ save.dwellers.actors.length }})</small></a>
       <a href="" ng-hide="!wastelandTeams.length" class="tab" ng-click="section = 'wastelandD'"
         ng-class="{ 'active': section == 'wastelandD' }">WastelandD <small>({{ wastelandTeams.length }})</small></a>
@@ -481,31 +544,38 @@ o
         ng-class="{ 'active': section == 'extras' }">Extras</a>
     </div>
 
-    <div class="row save">
-      <button class="btn btn-primary pull-right" ng-click="download()" ng-show="fileName">Save</button>
-    </div>
     <br>
     <div class="instructions">
-      <p>Large Files can take more time to load!</p>
+      <p>Large Files can take more time to load !</p>
       <p>Drag a save file here (e.g. Vault1.sav)</p>
       <p>or select one here :</p>
       <input type="file" id="sav_file" name="sav_file">
       <br>
       <br>
-      <p>For PC/Launcher Version the save is in:</p>
+      <p>For PC/Launcher Version the save is in :</p>
       <p>"Documents\My Games\Fallout Shelter"</p>
-      <p>For Steam Version the save is in:<br /> "C:\Users\YOURUSERNAME\AppData\Local\FalloutShelter"</p>
-      <p> For Android Version the Save is in:<br /> "storage/sdcard/Android/data/com.bethsoft.falloutshelter/files"</p>
+      <p>For Steam Version the save is in :<br /> "C:\Users\YOURUSERNAME\AppData\Local\FalloutShelter"</p>
+      <p> For Android Version the Save is in :<br /> "storage/sdcard/Android/data/com.bethsoft.falloutshelter/files"</p>
     </div>
+  </div>
+  <div class="container2">
+    <div class="row box2">
+      <div class="col-sm-12">
+        <p class="titleSoftware">There is a program/software for Fallout Shelter Visualize. You can download it <a href="./software/FalloutShelterVisualizeSoftware.rar">here</a> and the<a href="https://github.com/xTsuKiZox/fallout_shelter_visualize/tree/software" target="_blank"> documentation</a></p>
+      </div>
+    </div>
+  </div>
 
-    <script src="js/jquery-2.1.4.min.js"></script>
-    <script src="js/angular.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/json2.min.js"></script>
-    <script src="js/aes.js"></script>
-    <script src="js/FileSaver.js"></script>
-    <script src="js/shelter.js"></script>
-    <script src="js/jscolor.js"></script>
+  <script src="js/other.js"></script>
+  <script src="js/jquery-2.1.4.min.js"></script>
+  <script src="js/angular.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/json2.min.js"></script>
+  <script src="js/aes.js"></script>
+  <script src="js/FileSaver.js"></script>
+  <script src="js/shelter.js"></script>
+  <script src="js/jscolor.js"></script>
+
 </body>
 
 </html>

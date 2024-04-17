@@ -9,13 +9,22 @@ body {
   background-color: #000000;
 }
 
-body > .container {
+body>.container {
   height: 450px;
   width: 900px;
   margin: -225px 0 0 -450px;
   position: absolute;
   top: 50%;
   left: 50%;
+  padding: 0;
+}
+
+body>.container2 {
+  height: 100px;
+  width: 900px;
+  position: relative;
+  top: 69.5%;
+  left: 26.65%;
   padding: 0;
 }
 
@@ -51,7 +60,7 @@ a.tab:focus {
 }
 
 .tab.active {
-  border-color: #467bb7;
+  border-color: #5584AC;
   border-bottom-color: #fff;
   color: #333;
   background-color: #fff;
@@ -69,8 +78,25 @@ a.tab:focus {
   margin-bottom: 10px;
   height: 410px;
   width: 100%;
-  border: 4px solid #467bb7;
-  border-radius: 10px;
+  border-top: 4px solid #5584AC;
+  border-right: 4px solid #5584AC;
+  border-left: 4px solid #5584AC;
+  border-radius: 0px 0 0px 0px;
+  overflow: hidden;
+  box-sizing: border-box;
+  background: #fff;
+  position: relative;
+}
+
+.box2 {
+  margin-top: 30px;
+  margin-bottom: 10px;
+  width: 100%;
+  border: 0;
+  border-right: 4px solid #5584AC;
+  border-bottom: 4px solid #5584AC;
+  border-left: 4px solid #5584AC;
+  border-radius: 0px 0 10px 10px;
   overflow: hidden;
   box-sizing: border-box;
   background: #fff;
@@ -91,7 +117,9 @@ a.tab:focus {
   border-left-width: 0;
 }
 
-.dwellers {
+.dwellers,
+.vault,
+.rooms {
   height: 100%;
   overflow-y: scroll;
 }
@@ -99,7 +127,8 @@ a.tab:focus {
 .dweller_info,
 .other_info,
 .wasteland_info,
-.vault_info {
+.vault_info,
+.rooms_info {
   height: 100%;
   padding: 15px 15px 15px 0;
 
@@ -115,6 +144,11 @@ a.tab:focus {
 }
 
 .stat label {
+  width: 100%;
+  text-align: center;
+}
+
+.titleSoftware {
   width: 100%;
   text-align: center;
 }
@@ -222,12 +256,24 @@ a.tab:focus {
 .list-group-item.active,
 .list-group-item.active:focus,
 .list-group-item.active:hover {
-  background-color: #72beb2;
-  border-color: #72beb2;
+  color: black;
+  background-color: #FCEF6F !important;
+  border-color: #FCEF6F !important;
 }
 
-a.list-group-item, a.list-group-item, button.list-group-item, button.list-group-item {
+a.list-group-item,
+a.list-group-item,
+button.list-group-item,
+button.list-group-item {
   background-color: #fff;
+}
+
+.needLevel {
+  background-color: #89E697 !important;
+}
+
+.recolt {
+  background-color: #89E697 !important;
 }
 
 .btn-primary {
@@ -244,7 +290,7 @@ a.list-group-item, a.list-group-item, button.list-group-item, button.list-group-
     background: none;
   }
 
-  body > .container {
+  body>.container {
     position: relative;
     top: 0;
     left: 0;
@@ -334,4 +380,8 @@ a.list-group-item, a.list-group-item, button.list-group-item, button.list-group-
 
 p {
   color: black !important;
+}
+
+#changeSave {
+  display: none;
 }
