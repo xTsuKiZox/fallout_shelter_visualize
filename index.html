@@ -337,14 +337,13 @@
         <label title="Savefile names can only be 'Vault1.sav', 'Vault2.sav' or 'Vault3.sav'">Savefile Name: </label>
         <input type="text" name="presetSaveName" id="presetSaveName" placeholder="Vault1.sav" value="Vault2.sav"
           readonly>
-        <br>
 
+        <br>
         <label>Change save :</label>
         <br>
         <input type="file" id="sav_file5" name="sav_file5">
         <p id="changeSave" ng-show="section === 'extras' && save.dwellers">Save load !</p>
-
-
+        <br>
         <hr />
         <br>
         <center><b><a href="SaveDecrypt.html" target="_blank">Fallout Shelter Save Decryptor</a></b></center>
@@ -391,6 +390,57 @@
           </div>
         </form>
       </div>
+    </div>
+
+    <div class="row box" ng-show="section == 'special'">
+      <div class="special">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">S</th>
+              <th scope="col">S Time</th>
+              <th scope="col">P</th>
+              <th scope="col">P Time</th>
+              <th scope="col">E</th>
+              <th scope="col">E Time</th>
+              <th scope="col">C</th>
+              <th scope="col">C Time</th>
+              <th scope="col">I</th>
+              <th scope="col">I Time</th>
+              <th scope="col">A</th>
+              <th scope="col">A Time</th>
+              <th scope="col">L</th>
+              <th scope="col">L Time</th>
+              <th scope="col">Hours</th>
+              <th scope="col">Days</th>
+              <th scope="col">Mounth</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="d in save.dwellers.dwellers">
+              <td>{{ d.lastName }}</td>
+              <td>{{ d.stats.stats[1].value }}</td>
+              <td>{{ getTimeS(d.stats) }}</td>
+              <td>{{ d.stats.stats[2].value }}</td>
+              <td>{{ getTimeP(d.stats) }}</td>
+              <td>{{ d.stats.stats[3].value }}</td>
+              <td>{{ getTimeE(d.stats) }}</td>
+              <td>{{ d.stats.stats[4].value }}</td>
+              <td>{{ getTimeC(d.stats) }}</td>
+              <td>{{ d.stats.stats[5].value }}</td>
+              <td>{{ getTimeI(d.stats) }}</td>
+              <td>{{ d.stats.stats[6].value }}</td>
+              <td>{{ getTimeA(d.stats) }}</td>
+              <td>{{ d.stats.stats[7].value }}</td>
+              <td>{{ getTimeL(d.stats) }}</td>
+              <td>{{ getTotalHours(d.stats) }}</td>
+              <td>{{ getTotalDay(d.stats) }}</td>
+              <td>{{ getTotalMouth(d.stats) }}</td>
+          </tbody>
+        </table>
+      </div>
+
     </div>
 
     <div class="row box" ng-show="section == 'wastelandD'">
@@ -536,6 +586,8 @@
           }})</small></a>
       <a href="" ng-hide="!save.vault" class="tab" ng-click="section = 'Others'"
         ng-class="{ 'active': section == 'Others' }">Others <small>({{ save.dwellers.actors.length }})</small></a>
+      <a href="" ng-hide="!save.vault" class="tab" ng-click="section = 'special'"
+        ng-class="{ 'active': section == 'special' }">Special</a>
       <a href="" ng-hide="!wastelandTeams.length" class="tab" ng-click="section = 'wastelandD'"
         ng-class="{ 'active': section == 'wastelandD' }">WastelandD <small>({{ wastelandTeams.length }})</small></a>
       <a href="" ng-hide="!wastelandTeams2.length" class="tab" ng-click="section = 'wastelandH'"
@@ -543,7 +595,6 @@
       <a href="" ng-hide="!save.dwellers" class="tab" ng-click="section = 'extras'"
         ng-class="{ 'active': section == 'extras' }">Extras</a>
     </div>
-
     <br>
     <div class="instructions">
       <p>Large Files can take more time to load !</p>
@@ -558,10 +609,14 @@
       <p> For Android Version the Save is in :<br /> "storage/sdcard/Android/data/com.bethsoft.falloutshelter/files"</p>
     </div>
   </div>
+
   <div class="container2">
     <div class="row box2">
       <div class="col-sm-12">
-        <p class="titleSoftware">There is a program/software for Fallout Shelter Visualize. You can download it <a href="./software/FalloutShelterVisualizeSoftware.rar">here</a> and the<a href="https://github.com/xTsuKiZox/fallout_shelter_visualize/tree/software" target="_blank"> documentation</a></p>
+        <p class="titleSoftware">There is a program/software for Fallout Shelter Visualize. You can download it <a
+            href="./software/FalloutShelterVisualizeSoftware.rar">here</a> and the<a
+            href="https://github.com/xTsuKiZox/fallout_shelter_visualize/tree/software" target="_blank">
+            documentation</a></p>
       </div>
     </div>
   </div>

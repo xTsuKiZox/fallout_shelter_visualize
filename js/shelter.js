@@ -1,8 +1,11 @@
+//#region OTHER
 var key = [2815074099, 1725469378, 4039046167, 874293617, 3063605751, 3133984764, 4097598161, 3620741625];
 var iv = sjcl.codec.hex.toBits("7475383967656A693334307438397532");
 sjcl.beware["CBC mode is dangerous because it doesn't protect message integrity."]();
 var isLoaded = false;
+//#endregion OTHER
 
+//#region COLOR  
 function colorHack() {
   $('.jscolor').each(function () {
     $(this).focus();
@@ -26,6 +29,12 @@ function colorConverter(colorhex, mode) {
   }
 }
 
+function colortofos() {
+  var colorhex = document.getElementsByClassName("jscolor")[0].value;
+  $(".value1").html(colorConverter(colorhex));
+}
+//#endregion COLOR  
+
 //lazy code addition, but I believe it is beneficial and not too invasive.
 function numberCheckHelper() {
   $("input[type='number']").each(function () {
@@ -36,11 +45,6 @@ function numberCheckHelper() {
     }
   });
   setTimeout(numberCheckHelper, 3000);
-}
-
-function colortofos() {
-  var colorhex = document.getElementsByClassName("jscolor")[0].value;
-  $(".value1").html(colorConverter(colorhex));
 }
 
 $(document).ready(function () {
@@ -90,6 +94,7 @@ function handleFileSelect(evt) {
   }
 }
 
+//#region JSON
 function decrypt(evt, fileName, base64Str) {
   var cipherBits = sjcl.codec.base64.toBits(base64Str);
   var prp = new sjcl.cipher.aes(key);
@@ -114,7 +119,9 @@ function encrypt(fileName, save) {
   });
   saveAs(blob, fileName.replace(".txt", ".sav").replace(".json", ".sav"))
 }
+//#endregion JSON
 
+//#region INPUT SAVE SHELTER
 document.getElementById("sav_file").addEventListener("change", function (e) {
   $('.box').removeClass('hover').addClass('ready');
   $('.instructions').hide();
@@ -131,7 +138,9 @@ document.getElementById("sav_file5").addEventListener("change", function (e) {
 window.addEventListener("unload", function () {
   $('#changeSave').css('display', 'none');
 });
+//#endregion INPUT SAVE SHELTER
 
+//#region MOUSE
 document.ondragover = document.ondrop = function (e) {
   e.preventDefault();
   return false;
@@ -163,9 +172,9 @@ $('body .container .box')
     e.preventDefault();
     return false;
   });
+//#endregion MOUSE
 
-
-// Modifications
+//#region START
 let jsonDecode
 let isCharge = false
 function edit(fileName, save) {
@@ -177,9 +186,10 @@ function edit(fileName, save) {
     scope.save = save;
     scope.fileName = fileName;
   });
-  // scope.forS(jsonDecode);
 }
+//#endregion START
 
+//#region MAIN
 var app = angular.module('shelter', []);
 
 app.controller('dwellerController', function ($scope) {
@@ -187,6 +197,7 @@ app.controller('dwellerController', function ($scope) {
   $scope.fileName = '';
   $scope.dweller = {};
   $scope.rooms = {};
+  $scope.special = {};
   $scope.statsName = ['Unknown', 'S.', 'P.', 'E.', 'C.', 'I.', 'A.', 'L.'];
   $scope.other = {};
   $scope.wastelandTeams = [];
@@ -1319,9 +1330,13 @@ app.controller('dwellerController', function ($scope) {
     }
   }
 
-  function calculateTraining(room, dweller) {
+  function calculateTraining(room, dweller, hours) {
     if (dweller === 10) {
-      return "0 hours";
+      if (hours) {
+        return "0";
+      } else {
+        return "0 hours";
+      }
     }
     let trainingData = {};
     for (let i = dweller + 1; i <= 10; i++) {
@@ -1333,13 +1348,14 @@ app.controller('dwellerController', function ($scope) {
     for (let key in trainingData) {
       totalTraining += trainingData[key];
     }
-    let roundedTotalTraining = Math.round(totalTraining * 100) / 100;
-    return roundedTotalTraining.toFixed(2) + " hours";
+    if (hours) {
+      let roundedTotalTraining = Math.round(totalTraining * 100) / 100;
+      return roundedTotalTraining.toFixed(2);
+    } else {
+      let roundedTotalTraining = Math.round(totalTraining * 100) / 100;
+      return roundedTotalTraining.toFixed(2) + " hours";
+    }
   }
-
-
-
-
 
   function forS(stats) {
     $scope.$watch("save.vault.rooms", function (force) {
@@ -1353,6 +1369,17 @@ app.controller('dwellerController', function ($scope) {
     });
   }
 
+  $scope.getTimeS = function (stats) {
+    if (stats && stats.stats) {
+      const gymRooms = $scope.save.vault.rooms.filter(room => room.type === "Gym");
+      let levelRoom = gymRooms[0].level;
+      let levelDweller = stats.stats[1].value;
+      let newS = calculateTraining(levelRoom, levelDweller, true);
+      return newS;
+    }
+    return null;
+  };
+
   function forP(stats) {
     $scope.$watch("save.vault.rooms", function (perception) {
       if (perception && stats != undefined) {
@@ -1364,6 +1391,17 @@ app.controller('dwellerController', function ($scope) {
       }
     });
   }
+
+  $scope.getTimeP = function (stats) {
+    if (stats && stats.stats) {
+      const gymRooms = $scope.save.vault.rooms.filter(room => room.type === "Armory");
+      let levelRoom = gymRooms[0].level;
+      let levelDweller = stats.stats[2].value;
+      let newS = calculateTraining(levelRoom, levelDweller, true);
+      return newS;
+    }
+    return null;
+  };
 
   function forE(stats) {
     $scope.$watch("save.vault.rooms", function (perception) {
@@ -1377,6 +1415,17 @@ app.controller('dwellerController', function ($scope) {
     });
   }
 
+  $scope.getTimeE = function (stats) {
+    if (stats && stats.stats) {
+      const gymRooms = $scope.save.vault.rooms.filter(room => room.type === "SuperRoom2");
+      let levelRoom = gymRooms[0].level;
+      let levelDweller = stats.stats[3].value;
+      let newS = calculateTraining(levelRoom, levelDweller, true);
+      return newS;
+    }
+    return null;
+  };
+
   function forC(stats) {
     $scope.$watch("save.vault.rooms", function (perception) {
       if (perception && stats != undefined) {
@@ -1388,6 +1437,17 @@ app.controller('dwellerController', function ($scope) {
       }
     });
   }
+
+  $scope.getTimeC = function (stats) {
+    if (stats && stats.stats) {
+      const gymRooms = $scope.save.vault.rooms.filter(room => room.type === "Bar");
+      let levelRoom = gymRooms[0].level;
+      let levelDweller = stats.stats[4].value;
+      let newS = calculateTraining(levelRoom, levelDweller, true);
+      return newS;
+    }
+    return null;
+  };
 
   function forI(stats) {
     $scope.$watch("save.vault.rooms", function (perception) {
@@ -1401,6 +1461,17 @@ app.controller('dwellerController', function ($scope) {
     });
   }
 
+  $scope.getTimeI = function (stats) {
+    if (stats && stats.stats) {
+      const gymRooms = $scope.save.vault.rooms.filter(room => room.type === "Classroom");
+      let levelRoom = gymRooms[0].level;
+      let levelDweller = stats.stats[5].value;
+      let newS = calculateTraining(levelRoom, levelDweller, true);
+      return newS;
+    }
+    return null;
+  };
+
   function forA(stats) {
     $scope.$watch("save.vault.rooms", function (perception) {
       if (perception && stats != undefined) {
@@ -1412,6 +1483,17 @@ app.controller('dwellerController', function ($scope) {
       }
     });
   }
+
+  $scope.getTimeA = function (stats) {
+    if (stats && stats.stats) {
+      const gymRooms = $scope.save.vault.rooms.filter(room => room.type === "Dojo");
+      let levelRoom = gymRooms[0].level;
+      let levelDweller = stats.stats[6].value;
+      let newS = calculateTraining(levelRoom, levelDweller, true);
+      return newS;
+    }
+    return null;
+  };
 
   function forL(stats) {
     $scope.$watch("save.vault.rooms", function (perception) {
@@ -1425,6 +1507,17 @@ app.controller('dwellerController', function ($scope) {
     });
   }
 
+  $scope.getTimeL = function (stats) {
+    if (stats && stats.stats) {
+      const gymRooms = $scope.save.vault.rooms.filter(room => room.type === "Casino");
+      let levelRoom = gymRooms[0].level;
+      let levelDweller = stats.stats[7].value;
+      let newS = calculateTraining(levelRoom, levelDweller, true);
+      return newS;
+    }
+    return null;
+  };
+
   function forStat() {
     $scope.$watch("dweller.stats.stats", function (val) {
       forS(val);
@@ -1437,11 +1530,49 @@ app.controller('dwellerController', function ($scope) {
     })
   }
 
+  $scope.getTotalHours = function (stats) {
+    if (stats && stats.stats) {
+      if (isCharge) {
+        let S = Number($scope.getTimeS(stats));
+        let P = Number($scope.getTimeP(stats));
+        let E = Number($scope.getTimeE(stats));
+        let C = Number($scope.getTimeC(stats));
+        let I = Number($scope.getTimeI(stats));
+        let A = Number($scope.getTimeA(stats));
+        let L = Number($scope.getTimeL(stats));
+        let totalHours = (S + P + E + C + I + A + L).toFixed(2)
+        return totalHours
+      }
+    }
+    return null;
+  };
+
+  $scope.getTotalDay = function (stats) {
+    if (stats && stats.stats) {
+      if (isCharge) {
+        let totalDays
+        let hours = $scope.getTotalHours(stats);
+        return totalDays = (hours / 24).toFixed(2)
+      }
+    }
+    return null;
+  };
+
+  $scope.getTotalMouth = function (stats) {
+    if (stats && stats.stats) {
+      if (isCharge) {
+        let totalMouth
+        let days = $scope.getTotalDay(stats);
+        return totalMouth = (days / 30).toFixed(2)
+      }
+    }
+    return null;
+  };
+
 });
+//#endregion MAIN
 
-
-
-
+//#region PRESET
 function preset(preset, saveFileName) {
 
   /*
@@ -1472,3 +1603,4 @@ function preset(preset, saveFileName) {
     }
   };
 }
+//#endregion PRESET
