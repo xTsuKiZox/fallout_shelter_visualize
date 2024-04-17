@@ -67,7 +67,7 @@ function handleFileSelect(evt) {
     }
     if (f) {
       var reader = new FileReader;
-      if (evt.target.id == "sav_file" || evt.target.id == "sav_file5") {
+      if (evt.target.id == "sav_file") { // || evt.target.id == "sav_file5"
         reader.onload = function (evt2) {
           try {
             decrypt(evt2, fileName, reader.result)
@@ -128,12 +128,12 @@ document.getElementById("sav_file").addEventListener("change", function (e) {
   handleFileSelect(e);
 }, false);
 
-document.getElementById("sav_file5").addEventListener("change", function (e) {
-  $('#changeSave').css('display', 'block');
-  $('.box').removeClass('hover').addClass('ready');
-  $('.instructions').hide();
-  handleFileSelect(e);
-}, false);
+// document.getElementById("sav_file5").addEventListener("change", function (e) {
+//   $('#changeSave').css('display', 'block');
+//   $('.box').removeClass('hover').addClass('ready');
+//   $('.instructions').hide();
+//   handleFileSelect(e);
+// }, false);
 
 window.addEventListener("unload", function () {
   $('#changeSave').css('display', 'none');
