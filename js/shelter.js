@@ -1571,11 +1571,11 @@ app.controller('dwellerController', function ($scope) {
 
   $scope.getDwellersInRoom = function (idDwellerRoom) {
     const dweller = $scope.save.dwellers.dwellers.find(d => d.serializeId === idDwellerRoom);
-    return dweller ? dweller.lastName : "Unknown Dweller";
+    return dweller.name + ' ' + dweller.lastName
   };
 
   $scope.hasLevelUp = function (slots) {
-    if (slots){
+    if (slots) {
       return slots.some(slot => slot.needLvUp === true);
     }
   };
