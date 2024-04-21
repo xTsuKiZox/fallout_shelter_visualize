@@ -277,6 +277,10 @@ button.list-group-item {
   background-color: #89E697 !important;
 }
 
+.recoltTraining {
+  background-color: orange !important;
+}
+
 .btn-primary {
   background-color: #467bb7;
   border-color: #567997;

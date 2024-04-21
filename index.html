@@ -302,10 +302,17 @@
 
     <div class="row box" ng-show="section == 'rooms'">
       <div class="rooms list-group col-sm-4">
-        <a ng-repeat="d in save.vault.rooms | filter:{ type: '!Elevator' }" ng-click="editRooms(d);"
-          ng-class="{ 'active': rooms == d, 'recolt': d.currentStateName === 'Idle' }" class="list-group-item">{{ d.type
-          }}</a>
+        <a ng-repeat="d in save.vault.rooms | filter:{ type: '!Elevator' }" ng-click="editRooms(d);" ng-class="{ 
+      'active': rooms == d, 
+      'recolt': d.currentStateName === 'Idle', 
+      'recoltTraining': hasLevelUp(d.slots) 
+    }" class="list-group-item">
+          {{ d.type }}
+        </a>
       </div>
+
+
+
       <div class="rooms_info col-sm-8">
         <a href="#" class="back_button glyphicon glyphicon-chevron-left" ng-click="closeRooms()">Back</a>
         <form name="roomsForm">
@@ -315,6 +322,7 @@
               <input type="text" class="form-control" name="levelRoom" placeholder="Level" ng-model="rooms.level"
                 readonly>
             </div>
+
             <div class="col-sm-4">
               <label>Dwellers</label>
               <input type="text" class="form-control" name="dwellerRoom" placeholder="Dwellers"
@@ -323,8 +331,80 @@
 
             <div class="col-sm-4">
               <label>State</label>
-              <input type="text" class="form-control" name="state" ng-model="rooms.currentStateName"
-                ng-class="{ 'recolt': rooms.currentStateName === 'Idle'}" placeholder="State" readonly>
+              <input type="text" class="form-control" name="state" placeholder="State" ng-model="rooms.currentStateName"
+                ng-class="{ 'recolt': rooms.currentStateName === 'Idle' }" readonly>
+            </div>
+          </div>
+
+          <div class="form-group row" ng-if="rooms.class == 'Training' && rooms.dwellers.length >= 1">
+            <div class="col-sm-4" ng-init="dweller1Training = getDwellersInRoom(rooms.slots[0].dwellerID)">
+              <label>Dweller 1</label>
+              <input type="text" class="form-control" name="dweller1Training" ng-model="dweller1Training" readonly />
+            </div>
+
+            <div class="col-sm-4">
+              <label>Recolt ?</label>
+              <input type="text" class="form-control" name="state" ng-model="rooms.slots[0].needLvUp"
+                placeholder="Recolt ?" readonly ng-class="{ 'recoltTraining': rooms.slots[0].needLvUp === true }">
+            </div>
+          </div>
+          <div class="form-group row" ng-if="rooms.class == 'Training' && rooms.dwellers.length >= 2">
+            <div class="col-sm-4" ng-init="dweller2Training = getDwellersInRoom(rooms.slots[1].dwellerID)">
+              <label>Dweller 2</label>
+              <input type="text" class="form-control" ng-model="dweller2Training" readonly />
+            </div>
+
+            <div class="col-sm-4">
+              <label>Recolt ?</label>
+              <input type="text" class="form-control" name="state" ng-model="rooms.slots[1].needLvUp"
+                placeholder="Recolt ?" readonly ng-class="{ 'recoltTraining': rooms.slots[1].needLvUp === true }">
+            </div>
+          </div>
+          <div class="form-group row" ng-if="rooms.class == 'Training' && rooms.dwellers.length >= 3">
+            <div class="col-sm-4" ng-init="dweller3Training = getDwellersInRoom(rooms.slots[2].dwellerID)">
+              <label>Dweller 3</label>
+              <input type="text" class="form-control" name="dweller3Training" ng-model="dweller3Training" readonly />
+            </div>
+
+            <div class="col-sm-4" ng-class="{ 'recoltTraining': rooms.slots[2].needLvUp === true }">
+              <label>Recolt ?</label>
+              <input type="text" class="form-control" name="state" ng-model="rooms.slots[2].needLvUp"
+                placeholder="Recolt ?" readonly ng-class="{ 'recoltTraining': rooms.slots[2].needLvUp === true }">
+            </div>
+          </div>
+          <div class="form-group row" ng-if="rooms.class == 'Training' && rooms.dwellers.length >= 4">
+            <div class="col-sm-4" ng-init="dweller4Training = getDwellersInRoom(rooms.slots[3].dwellerID)">
+              <label>Dweller 4</label>
+              <input type="text" class="form-control" ng-model="dweller4Training" readonly />
+            </div>
+
+            <div class="col-sm-4">
+              <label>Recolt ?</label>
+              <input type="text" class="form-control" name="state" ng-model="rooms.slots[3].needLvUp"
+                placeholder="Recolt ?" readonly ng-class="{ 'recoltTraining': rooms.slots[3].needLvUp === true }">
+            </div>
+          </div>
+          <div class="form-group row" ng-if="rooms.class == 'Training' && rooms.dwellers.length >= 5">
+            <div class="col-sm-4" ng-init="dweller5Training = getDwellersInRoom(rooms.slots[4].dwellerID)">
+              <label>Dweller 5</label>
+              <input type="text" class="form-control" name="dweller5Training" ng-model="dweller5Training" readonly />
+            </div>
+
+            <div class="col-sm-4" ng-class="{ 'recoltTraining': rooms.slots[4].needLvUp === true }">
+              <label>Recolt ?</label>
+              <input type="text" class="form-control" name="state" ng-model="rooms.slots[4].needLvUp"
+                placeholder="Recolt ?" readonly ng-class="{ 'recoltTraining': rooms.slots[4].needLvUp === true }">
+            </div>
+          </div>
+          <div class="form-group row" ng-if="rooms.class == 'Training' && rooms.dwellers.length >= 6">
+            <div class="col-sm-4" ng-init="dweller6Training = getDwellersInRoom(rooms.slots[5].dwellerID)">
+              <label>Dweller 6</label>
+              <input type="text" class="form-control" ng-model="dweller6Training" readonly />
+            </div>
+            <div class="col-sm-4">
+              <label>Recolt ?</label>
+              <input type="text" class="form-control" name="state" ng-model="rooms.slots[5].needLvUp"
+                placeholder="Recolt ?" readonly ng-class="{ 'recoltTraining': rooms.slots[5].needLvUp === true }">
             </div>
           </div>
         </form>
