@@ -1599,7 +1599,7 @@ app.config(function ($translateProvider) {
     vaultwater: "Water",
     vaultstimpack: "Stimpack",
     vaultradway: "RadAway",
-    vaultversion: "Save app Version ",
+    vaultversion: "Save app Version : ",
 
     //& <--- DWELLER ---->//
     dwellerfirst: "First Name",
@@ -1629,7 +1629,7 @@ app.config(function ($translateProvider) {
 
     //& <--- ROOM ---->//
     roomlevel: "Level",
-    roomdewellers: "Dwellers",
+    roomdwellers: "Dwellers",
     roomstate: "State",
     roomtraining: "Dweller",
     roomrecolt: "Recolt ?",
@@ -1641,6 +1641,7 @@ app.config(function ($translateProvider) {
     extraupdate: "Updated by",
     extrabasic: "Basic project by",
     extraproject: "Project Originally by",
+    extrabutton: "Change save",
 
     //& <--- OTHERS ---->//
     othername: "Name",
@@ -1680,6 +1681,8 @@ app.config(function ($translateProvider) {
 
     //& <--- SOFTWARE ---->//
     software1: 'There is a program/software for Fallout Shelter Visualize. You can download it',
+    software2: 'here',
+    software3: 'and the',
   });
 
   $translateProvider.translations('fr', {
@@ -1698,7 +1701,7 @@ app.config(function ($translateProvider) {
     vaultwater: "Water",
     vaultstimpack: "Stimpack",
     vaultradway: "RadAway",
-    vaultversion: "Save app Version ",
+    vaultversion: "Save app Version :",
 
     //& <--- DWELLER ---->//
     dwellerfirst: "First Name",
