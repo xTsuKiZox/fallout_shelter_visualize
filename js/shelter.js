@@ -192,7 +192,14 @@ function edit(fileName, save) {
 //#region MAIN SHELTER
 var app = angular.module('shelter', ['pascalprecht.translate']);
 
-app.controller('dwellerController', function ($scope) {
+app.controller('dwellerController', function ($scope, $translate) {
+  $scope.selectedLang = 'en';
+  console.log("suis la ")
+
+  $scope.changeLanguage = function (lang) {
+    $translate.use(lang);
+  };
+
   $scope.section = 'vault';
   $scope.fileName = '';
   $scope.dweller = {};
@@ -1631,7 +1638,7 @@ app.config(function ($translateProvider) {
     roomlevel: "Level",
     roomdwellers: "Dwellers",
     roomstate: "State",
-    roomtraining: "Dweller",
+    roomtraining: "Dweller -",
     roomrecolt: "Recolt ?",
 
     //& <--- EXTRA ---->//
@@ -1651,13 +1658,13 @@ app.config(function ($translateProvider) {
 
     //& <--- SPECIAL ---->//
     specialname: "Name",
-    specialtimeS: "Temps S",
-    specialtimeP: "Temps P",
-    specialtimeE: "Temps E",
-    specialtimeC: "Temps C",
-    specialtimeI: "Temps I",
-    specialtimeA: "Temps A",
-    specialtimeL: "Temps L",
+    specialtimeS: "Time S",
+    specialtimeP: "Time P",
+    specialtimeE: "Time E",
+    specialtimeC: "Time C",
+    specialtimeI: "Time I",
+    specialtimeA: "Time A",
+    specialtimeL: "Time L",
     specialhours: "Hours",
     specialdays: "Days",
 
@@ -1686,41 +1693,41 @@ app.config(function ($translateProvider) {
   });
 
   $translateProvider.translations('fr', {
-    //& <--- VAULT ---->//
-    vaultname: "Name",
-    vaultcaps: "Caps",
+    //& <--- ABRI ---->//
+    vaultname: "Nom",
+    vaultcaps: "Capsules",
     vaultnuka: "Nuka Cola Quantums",
-    vaultlunch: "Lunch Boxes",
-    vaulthandies: "Mr. Handies",
-    vaultpet: "Pet Carrier",
-    vaultstarter: "Starter Pack",
-    vaultmode: "Vault Mode",
-    vaulttheme: "Vault Theme",
-    vaultfood: "Food",
-    vaultenergy: "Energy",
-    vaultwater: "Water",
+    vaultlunch: "Boîtes à lunch",
+    vaulthandies: "Mr. Handy",
+    vaultpet: "Transporteur d'animaux",
+    vaultstarter: "Kit de départ",
+    vaultmode: "Mode Abri",
+    vaulttheme: "Thème Abri",
+    vaultfood: "Nourriture",
+    vaultenergy: "Énergie",
+    vaultwater: "Eau",
     vaultstimpack: "Stimpack",
     vaultradway: "RadAway",
-    vaultversion: "Save app Version :",
+    vaultversion: "Version de l'application :",
 
-    //& <--- DWELLER ---->//
-    dwellerfirst: "First Name",
-    dwellerlast: "Last Name",
-    dwellergender: "Gender",
-    dwellerhappi: "Happiness",
-    dwellerhealth: "Health",
-    dwellermaxhealth: "Max Health",
+    //& <--- HABITANT ---->//
+    dwellerfirst: "Prénom",
+    dwellerlast: "Nom de famille",
+    dwellergender: "Genre",
+    dwellerhappi: "Bonheur",
+    dwellerhealth: "Santé",
+    dwellermaxhealth: "Santé maximale",
     dwellerradiation: "Radiation",
-    dwellerlevel: "Level",
-    dwellerneedlvlup: "Need level up ?",
-    dwellerskincolor: "Skin Color",
-    dwellerhaircolor: "Hair Color",
-    dwellerpregnant: "Pregnant",
-    dwellerbabyready: "Baby Ready",
-    dwellerpet: "Pet ?",
-    dwellerequipoutfit: "Equiped Outfit",
-    dwellerequipweapon: "Equiped Weapon",
-    dwellerrarity: "Rarity",
+    dwellerlevel: "Niveau",
+    dwellerneedlvlup: "Besoin de monter de niveau ?",
+    dwellerskincolor: "Couleur de peau",
+    dwellerhaircolor: "Couleur des cheveux",
+    dwellerpregnant: "Enceinte",
+    dwellerbabyready: "Prête pour le bébé",
+    dwellerpet: "Animal de compagnie ?",
+    dwellerequipoutfit: "Vêtement équipé",
+    dwellerequipweapon: "Arme équipée",
+    dwellerrarity: "Rareté",
     dwellertimeS: "Temps S ",
     dwellertimeP: "Temps P ",
     dwellertimeE: "Temps E ",
@@ -1729,29 +1736,28 @@ app.config(function ($translateProvider) {
     dwellertimeA: "Temps A ",
     dwellertimeL: "Temps L ",
 
-    //& <--- ROOM ---->//
-    roomlevel: "Level",
-    roomdewellers: "Dwellers",
-    roomstate: "State",
-    roomtraining: "Dweller",
-    roomrecolt: "Recolt ?",
+    //& <--- SALLE ---->//
+    roomlevel: "Niveau",
+    roomdwellers: "Habitants",
+    roomstate: "État",
+    roomtraining: "Habitants -",
+    roomrecolt: "Récolter ?",
 
     //& <--- EXTRA ---->//
-    extrasavefile: "Savefile Name :",
-    extradecrypt: "Fallout Shelter Save Decryptor",
-    extraviewcode: "View the Source Code",
-    extraupdate: "Updated by",
-    extrabasic: "Basic project by",
-    extraproject: "Project Originally by",
+    extrasavefile: "Nom du fichier de sauvegarde :",
+    extradecrypt: "Décrypteur de sauvegarde de Fallout Shelter",
+    extraviewcode: "Voir le code source",
+    extraupdate: "Mis à jour par",
+    extrabasic: "Projet basique par",
+    extraproject: "Projet initialement par",
 
-    //& <--- OTHERS ---->//
-    othername: "Name",
-    otherhealth: "Health",
-    otherdeath: "Is Death?",
-
+    //& <--- AUTRES ---->//
+    othername: "Nom",
+    otherhealth: "Santé",
+    otherdeath: "Est mort ?",
 
     //& <--- SPECIAL ---->//
-    specialname: "Name",
+    specialname: "Nom",
     specialtimeS: "Temps S",
     specialtimeP: "Temps P",
     specialtimeE: "Temps E",
@@ -1759,42 +1765,30 @@ app.config(function ($translateProvider) {
     specialtimeI: "Temps I",
     specialtimeA: "Temps A",
     specialtimeL: "Temps L",
-    specialhours: "Hours",
-    specialdays: "Days",
+    specialhours: "Heures",
+    specialdays: "Jours",
 
-
-    //& <--- HOME ---->//
+    //& <--- ACCUEIL ---->//
     homename: "Fallout Shelter - Visualize",
-    homevault: "Vault",
-    homedwellers: "Dwellers",
-    homerooms: "Rooms",
-    homeothers: "Others",
-
+    homevault: "Abri",
+    homedwellers: "Habitants",
+    homerooms: "Salles",
+    homeothers: "Autres",
 
     //& <--- INSTRUCTIONS ---->//
-    instruction1: "Large Files can take more time to load !",
-    instruction2: "Drag a save file here (e.g. Vault1.sav)",
-    instruction3: "or select one here :",
-    instruction4: "For PC/Launcher Version the save is in :",
-    instruction5: "For Steam Version the save is in :",
-    instruction6: "For Android Version the Save is in :",
+    instruction1: "Les fichiers volumineux peuvent prendre plus de temps à charger !",
+    instruction2: "Faites glisser un fichier de sauvegarde ici (par exemple, Vault1.sav)",
+    instruction3: "ou choisissez-en un ici :",
+    instruction4: "Pour la version PC/Lanceur, la sauvegarde est ici :",
+    instruction5: "Pour la version Steam, la sauvegarde est ici :",
+    instruction6: "Pour la version Android, la sauvegarde est ici :",
 
-
-    //& <--- SOFTWARE ---->//
-    software1: 'There is a program/software for Fallout Shelter Visualize. You can download it',
+    //& <--- LOGICIEL ---->//
+    software1: 'Il y a un programme/logiciel pour Fallout Shelter Visualize. Vous pouvez le télécharger ici',
   });
 
   $translateProvider.preferredLanguage('en');
 });
-
-app.controller('MainController', function ($scope, $translate) {
-  $scope.selectedLang = 'en';
-
-  $scope.changeLanguage = function (lang) {
-    $translate.use(lang);
-  };
-});
-
 //#endregion MAIN SHELTER
 
 //#region PRESET

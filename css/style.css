@@ -23,8 +23,8 @@ body>.container2 {
   height: 100px;
   width: 900px;
   position: relative;
-  top: 69.5%;
-  left: 26.65%;
+  top: 67.5%;
+  left: 26.90%;
   padding: 0;
 }
 
@@ -119,8 +119,8 @@ a.tab:focus {
 
 .dwellers,
 .vault,
-.rooms, 
-.special{
+.rooms,
+.special {
   height: 100%;
   overflow-y: scroll;
 }
