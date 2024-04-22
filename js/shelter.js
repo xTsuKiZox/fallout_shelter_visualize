@@ -189,8 +189,8 @@ function edit(fileName, save) {
 }
 //#endregion START
 
-//#region MAIN
-var app = angular.module('shelter', []);
+//#region MAIN SHELTER
+var app = angular.module('shelter', ['pascalprecht.translate']);
 
 app.controller('dwellerController', function ($scope) {
   $scope.section = 'vault';
@@ -1581,7 +1581,218 @@ app.controller('dwellerController', function ($scope) {
   };
 
 });
-//#endregion MAIN
+
+app.config(function ($translateProvider) {
+  $translateProvider.translations('en', {
+    //& <--- VAULT ---->//
+    vaultname: "Name",
+    vaultcaps: "Caps",
+    vaultnuka: "Nuka Cola Quantums",
+    vaultlunch: "Lunch Boxes",
+    vaulthandies: "Mr. Handies",
+    vaultpet: "Pet Carrier",
+    vaultstarter: "Starter Pack",
+    vaultmode: "Vault Mode",
+    vaulttheme: "Vault Theme",
+    vaultfood: "Food",
+    vaultenergy: "Energy",
+    vaultwater: "Water",
+    vaultstimpack: "Stimpack",
+    vaultradway: "RadAway",
+    vaultversion: "Save app Version ",
+
+    //& <--- DWELLER ---->//
+    dwellerfirst: "First Name",
+    dwellerlast: "Last Name",
+    dwellergender: "Gender",
+    dwellerhappi: "Happiness",
+    dwellerhealth: "Health",
+    dwellermaxhealth: "Max Health",
+    dwellerradiation: "Radiation",
+    dwellerlevel: "Level",
+    dwellerneedlvlup: "Need level up ?",
+    dwellerskincolor: "Skin Color",
+    dwellerhaircolor: "Hair Color",
+    dwellerpregnant: "Pregnant",
+    dwellerbabyready: "Baby Ready",
+    dwellerpet: "Pet ?",
+    dwellerequipoutfit: "Equiped Outfit",
+    dwellerequipweapon: "Equiped Weapon",
+    dwellerrarity: "Rarity",
+    dwellertimeS: "Time S ",
+    dwellertimeP: "Time P ",
+    dwellertimeE: "Time E ",
+    dwellertimeC: "Time C ",
+    dwellertimeI: "Time I ",
+    dwellertimeA: "Time A ",
+    dwellertimeL: "Time L ",
+
+    //& <--- ROOM ---->//
+    roomlevel: "Level",
+    roomdewellers: "Dwellers",
+    roomstate: "State",
+    roomtraining: "Dweller",
+    roomrecolt: "Recolt ?",
+
+    //& <--- EXTRA ---->//
+    extrasavefile: "Savefile Name :",
+    extradecrypt: "Fallout Shelter Save Decryptor",
+    extraviewcode: "View the Source Code",
+    extraupdate: "Updated by",
+    extrabasic: "Basic project by",
+    extraproject: "Project Originally by",
+
+    //& <--- OTHERS ---->//
+    othername: "Name",
+    otherhealth: "Health",
+    otherdeath: "Is Death?",
+
+
+    //& <--- SPECIAL ---->//
+    specialname: "Name",
+    specialtimeS: "Temps S",
+    specialtimeP: "Temps P",
+    specialtimeE: "Temps E",
+    specialtimeC: "Temps C",
+    specialtimeI: "Temps I",
+    specialtimeA: "Temps A",
+    specialtimeL: "Temps L",
+    specialhours: "Hours",
+    specialdays: "Days",
+
+
+    //& <--- HOME ---->//
+    homename: "Fallout Shelter - Visualize",
+    homevault: "Vault",
+    homedwellers: "Dwellers",
+    homerooms: "Rooms",
+    homeothers: "Others",
+
+
+    //& <--- INSTRUCTIONS ---->//
+    instruction1: "Large Files can take more time to load !",
+    instruction2: "Drag a save file here (e.g. Vault1.sav)",
+    instruction3: "or select one here :",
+    instruction4: "For PC/Launcher Version the save is in :",
+    instruction5: "For Steam Version the save is in :",
+    instruction6: "For Android Version the Save is in :",
+
+
+    //& <--- SOFTWARE ---->//
+    software1: 'There is a program/software for Fallout Shelter Visualize. You can download it',
+  });
+
+  $translateProvider.translations('fr', {
+    //& <--- VAULT ---->//
+    vaultname: "Name",
+    vaultcaps: "Caps",
+    vaultnuka: "Nuka Cola Quantums",
+    vaultlunch: "Lunch Boxes",
+    vaulthandies: "Mr. Handies",
+    vaultpet: "Pet Carrier",
+    vaultstarter: "Starter Pack",
+    vaultmode: "Vault Mode",
+    vaulttheme: "Vault Theme",
+    vaultfood: "Food",
+    vaultenergy: "Energy",
+    vaultwater: "Water",
+    vaultstimpack: "Stimpack",
+    vaultradway: "RadAway",
+    vaultversion: "Save app Version ",
+
+    //& <--- DWELLER ---->//
+    dwellerfirst: "First Name",
+    dwellerlast: "Last Name",
+    dwellergender: "Gender",
+    dwellerhappi: "Happiness",
+    dwellerhealth: "Health",
+    dwellermaxhealth: "Max Health",
+    dwellerradiation: "Radiation",
+    dwellerlevel: "Level",
+    dwellerneedlvlup: "Need level up ?",
+    dwellerskincolor: "Skin Color",
+    dwellerhaircolor: "Hair Color",
+    dwellerpregnant: "Pregnant",
+    dwellerbabyready: "Baby Ready",
+    dwellerpet: "Pet ?",
+    dwellerequipoutfit: "Equiped Outfit",
+    dwellerequipweapon: "Equiped Weapon",
+    dwellerrarity: "Rarity",
+    dwellertimeS: "Temps S ",
+    dwellertimeP: "Temps P ",
+    dwellertimeE: "Temps E ",
+    dwellertimeC: "Temps C ",
+    dwellertimeI: "Temps I ",
+    dwellertimeA: "Temps A ",
+    dwellertimeL: "Temps L ",
+
+    //& <--- ROOM ---->//
+    roomlevel: "Level",
+    roomdewellers: "Dwellers",
+    roomstate: "State",
+    roomtraining: "Dweller",
+    roomrecolt: "Recolt ?",
+
+    //& <--- EXTRA ---->//
+    extrasavefile: "Savefile Name :",
+    extradecrypt: "Fallout Shelter Save Decryptor",
+    extraviewcode: "View the Source Code",
+    extraupdate: "Updated by",
+    extrabasic: "Basic project by",
+    extraproject: "Project Originally by",
+
+    //& <--- OTHERS ---->//
+    othername: "Name",
+    otherhealth: "Health",
+    otherdeath: "Is Death?",
+
+
+    //& <--- SPECIAL ---->//
+    specialname: "Name",
+    specialtimeS: "Temps S",
+    specialtimeP: "Temps P",
+    specialtimeE: "Temps E",
+    specialtimeC: "Temps C",
+    specialtimeI: "Temps I",
+    specialtimeA: "Temps A",
+    specialtimeL: "Temps L",
+    specialhours: "Hours",
+    specialdays: "Days",
+
+
+    //& <--- HOME ---->//
+    homename: "Fallout Shelter - Visualize",
+    homevault: "Vault",
+    homedwellers: "Dwellers",
+    homerooms: "Rooms",
+    homeothers: "Others",
+
+
+    //& <--- INSTRUCTIONS ---->//
+    instruction1: "Large Files can take more time to load !",
+    instruction2: "Drag a save file here (e.g. Vault1.sav)",
+    instruction3: "or select one here :",
+    instruction4: "For PC/Launcher Version the save is in :",
+    instruction5: "For Steam Version the save is in :",
+    instruction6: "For Android Version the Save is in :",
+
+
+    //& <--- SOFTWARE ---->//
+    software1: 'There is a program/software for Fallout Shelter Visualize. You can download it',
+  });
+
+  $translateProvider.preferredLanguage('en');
+});
+
+app.controller('MainController', function ($scope, $translate) {
+  $scope.selectedLang = 'en';
+
+  $scope.changeLanguage = function (lang) {
+    $translate.use(lang);
+  };
+});
+
+//#endregion MAIN SHELTER
 
 //#region PRESET
 function preset(preset, saveFileName) {
