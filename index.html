@@ -533,7 +533,7 @@
 
     </div>
 
-    <div class="row box" ng-show="section == 'wastelandD'">
+    <!-- <div class="row box" ng-show="section == 'wastelandD'">
       <div class="dwellers list-group col-sm-4">
         <a ng-repeat="t in wastelandTeams" ng-click="editTeam(t);" ng-class="{ 'active': team == t }"
           class="list-group-item">{{ t.dweller.name }} {{ t.dweller.lastName }}</a>
@@ -662,7 +662,7 @@
         </form>
 
       </div>
-    </div>
+    </div> -->
 
     <div class="row tabs">
       <a href="" class="tab" translate="homename"></a>
@@ -678,10 +678,10 @@
         ng-class="{ 'active': section == 'Others' }">Others <small>({{ save.dwellers.actors.length }})</small></a>
       <a href="" ng-hide="!save.vault" class="tab" ng-click="section = 'SPECIAL'"
         ng-class="{ 'active': section == 'SPECIAL' }">SPECIAL</a>
-      <a href="" ng-hide="!wastelandTeams.length" class="tab" ng-click="section = 'wastelandD'"
+      <!-- <a href="" ng-hide="!wastelandTeams.length" class="tab" ng-click="section = 'wastelandD'"
         ng-class="{ 'active': section == 'wastelandD' }">WastelandD <small>({{ wastelandTeams.length }})</small></a>
       <a href="" ng-hide="!wastelandTeams2.length" class="tab" ng-click="section = 'wastelandH'"
-        ng-class="{ 'active': section == 'wastelandH' }">WastelandH <small>({{ wastelandTeams2.length }})</small></a>
+        ng-class="{ 'active': section == 'wastelandH' }">WastelandH <small>({{ wastelandTeams2.length }})</small></a> -->
       <a href="" ng-hide="!save.dwellers" class="tab" ng-click="section = 'extras'"
         ng-class="{ 'active': section == 'extras' }">Extras</a>
     </div>
