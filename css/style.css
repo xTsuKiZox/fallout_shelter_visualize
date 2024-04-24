@@ -10,21 +10,22 @@ body {
 }
 
 body>.container {
-  height: 450px;
-  width: 900px;
+  /*height: 450px;
+  */
+  /* width: 900px; */
   margin: -225px 0 0 -450px;
   position: absolute;
   top: 50%;
-  left: 50%;
+  left: 40%;
   padding: 0;
 }
 
 body>.container2 {
   height: 100px;
-  width: 900px;
+  width: 62.31%;
   position: relative;
   top: 67.5%;
-  left: 26.90%;
+  left: 16.85%;
   padding: 0;
 }
 
