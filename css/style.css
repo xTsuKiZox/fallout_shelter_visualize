@@ -291,6 +291,29 @@ button.list-group-item {
   display: none;
 }
 
+
+.presets {
+  margin-top: 30px;
+  margin-bottom: 10px;
+  height: 370px;
+  width: 100%;
+  border: 4px solid #467bb7;
+  border-radius: 10px;
+  overflow: hidden;
+  box-sizing: border-box;
+  background: #fff;
+  position: relative;
+}
+
+
+p {
+  color: black !important;
+}
+
+#changeSave {
+  display: none;
+}
+
 @media (max-width: 768px) {
   body {
     background: none;
@@ -305,6 +328,10 @@ button.list-group-item {
     height: 100%;
 
     margin: 0;
+  }
+
+  body>.container2 {
+    display: none
   }
 
   .box {
@@ -366,28 +393,4 @@ button.list-group-item {
     display: block;
     padding-bottom: 20px;
   }
-}
-
-
-
-.presets {
-  margin-top: 30px;
-  margin-bottom: 10px;
-  height: 370px;
-  width: 100%;
-  border: 4px solid #467bb7;
-  border-radius: 10px;
-  overflow: hidden;
-  box-sizing: border-box;
-  background: #fff;
-  position: relative;
-}
-
-
-p {
-  color: black !important;
-}
-
-#changeSave {
-  display: none;
 }
